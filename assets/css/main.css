@@ -1,0 +1,15 @@
+/* Main CSS file that imports all others */
+@import url('variables.css');
+@import url('responsive.css');
+
+@import url('includes/header.css');
+@import url('includes/footer.css');
+
+@import url('pages/home.css');
+@import url('pages/product.css');
+@import url('pages/products.css');
+
+
+
+@import url('pages/login.css');
+@import url('pages/register.css'); 

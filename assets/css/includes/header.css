@@ -1,0 +1,202 @@
+.header-top-part {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    padding: 12px 32px;
+    background-color: var(--primary);
+}
+
+.company-name {
+    color: var(--white);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.company-name:hover {
+    color: var(--secondary);
+}
+
+/* Search Container */
+.search-container {
+    position: relative;
+    flex: 1;
+    max-width: 800px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 0.95rem;
+}
+
+.search-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-container input:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+
+
+.icons-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icons-item {
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.icons-item:hover {
+    color: var(--secondary);
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+    font-size: 0.9rem;
+}
+
+.user-section a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.user-section a:hover {
+    color: var(--secondary);
+}
+
+.user-section span {
+    color: var(--white);
+}
+
+/* Main Navigation */
+.main-nav {
+    background-color: var(--secondary);
+    padding: 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link i {
+    font-size: 1rem;
+}
+
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: var(--white);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+
+/* MENU FOR FILTERS */
+
+.menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    min-width: 500px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.menu-container:hover .menu-content {
+    display: flex;
+    gap: 40px;
+}
+
+.menu-section {
+    flex: 1;
+}
+
+.menu-section h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--secondary);
+}
+
+.menu-section a {
+    display: block;
+    color: var(--black);
+    font-size: 1rem;
+    padding: 8px 0;
+    transition: color 0.3s;
+}
+
+.menu-section a:hover {
+    color: var(--accent);
+}

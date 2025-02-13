@@ -1,0 +1,119 @@
+/* Filter Sidebar */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.filters {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* Products Grid */
+.products {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .filters {
+        width: 100%;
+    }
+
+    .products {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+/* Add these new styles to your existing CSS file */
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.original-price {
+    color: var(--gray);
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+/* Sale Banner Ticker */
+.sale-banner {
+    background-color: var(--accent);
+    color: var(--white);
+    overflow: hidden;
+    padding: 12px 0;
+}
+
+.ticker-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ticker-content {
+    animation: ticker 18s linear infinite;
+    white-space: nowrap;
+}
+
+.ticker-content span {
+    display: inline-block;
+    padding: 0 35px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@keyframes ticker {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
