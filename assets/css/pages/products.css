@@ -46,20 +46,6 @@
     gap: 20px;
 }
 
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .filters {
-        width: 100%;
-    }
-
-    .products {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-}
-
 /* Add these new styles to your existing CSS file */
 .discount-badge {
     position: absolute;

@@ -6,6 +6,7 @@
     <title>Products Page</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="assets/js/script.js"></script>
 </head>
 
 <?php 

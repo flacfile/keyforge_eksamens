@@ -42,7 +42,7 @@ footer {
 .footer-section a {
     color: var(--white);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color .3s ease;
 }
 
 .social-links {
@@ -59,7 +59,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
+    transition: background-color .3s ease;
 }
 
 .social-links a:hover {
