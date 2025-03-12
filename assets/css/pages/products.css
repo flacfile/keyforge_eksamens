@@ -67,7 +67,7 @@
 .original-price {
     color: var(--gray);
     text-decoration: line-through;
-    font-size: 0.9rem;
+    font-size: .9rem;
 }
 
 /* Sale Banner Ticker */

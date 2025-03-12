@@ -14,7 +14,7 @@
     display: none;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: .5rem 0;
 }
 
 .mobile-menu-toggle {
@@ -115,7 +115,7 @@
     margin: auto;
     display: flex;
     gap: 2rem;
-    padding: 0.8rem 1rem;
+    padding: .8rem 1rem;
 }
 
 .nav-link {
@@ -123,7 +123,7 @@
     color: var(--primary);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: .5rem;
     font-size: 1.2rem;
 }
 
@@ -165,7 +165,7 @@
     display: block;
     text-decoration: none;
     color: var(--primary);
-    padding: 0.5rem 0;
+    padding: .5rem 0;
 }
 
 .menu-section a:hover {

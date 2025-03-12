@@ -23,7 +23,7 @@
     color: white;
     font-weight: bold;
     font-size: 24px;
-    transition: 0.3s ease;
+    transition: .3s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
     background-color: rgba(0,0,0,0.3);
@@ -128,7 +128,7 @@
 }
 
 .product-description {
-    font-size: 0.9rem;
+    font-size: .9rem;
     color: var(--gray);
     margin: 10px 0 20px;
 }
