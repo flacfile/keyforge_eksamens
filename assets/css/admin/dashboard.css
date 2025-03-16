@@ -139,11 +139,10 @@
 }
 
 .btn-secondary {
-    background: var(--gray-light);
-    color: var(--primary);
+    background: var(--gray);
+    color: var(--white);
 }
 
 .btn-secondary:hover {
-    background: var(--gray);
-    color: var(--white);
+    background: var(--primary);
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Admin Produkti</title>
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/admin/dashboard.css">
     <link rel="stylesheet" href="../assets/css/admin/products.css">
@@ -13,7 +13,7 @@
     <div class="admin-container">
         <aside class="sidebar">
             <div class="sidebar-header">
-                <h2><a href="index.php" class="company-name">KeyForge</a></h2>
+                <h2><a href="../index.php" class="company-name">KeyForge</a></h2>
             </div>
             <nav class="sidebar-nav">
                 <a href="dashboard.php" class="nav-item">
@@ -52,7 +52,16 @@
                     <button class="btn btn-secondary">
                         <i class="fas fa-file-import"></i> Importēt atslēgas
                     </button>
+                    <div class="header-right">
+                    <div class="admin-profile">
+                        <span>Admin User</span>
+                        <a href="logout.php" class="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </div>
                 </div>
+                </div>
+                
             </header>
 
             <div class="content-body">

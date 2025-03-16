@@ -1,0 +1,66 @@
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.orders-table th {
+    background: var(--gray-light);
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    font-weight: 500;
+}
+
+.time {
+    color: var(--gray);
+    font-size: .9rem;
+}
+
+.customer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-info .name {
+    font-weight: 500;
+}
+
+.customer-info .email {
+    color: var(--gray);
+    font-size: .9rem;
+}
+
+.order-products {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.order-products .product {
+    font-weight: 500;
+}
+
+.order-products .quantity {
+    color: var(--gray);
+    font-size: .9rem;
+}
+
+.status-badge {
+    padding: .25rem .5rem;
+    border-radius: 1rem;
+    font-size: .8rem;
+    font-weight: 500;
+    display: inline-block;
+}
