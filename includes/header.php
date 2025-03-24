@@ -23,7 +23,7 @@
                         <i class="fas fa-shopping-cart"></i>
                     </div>
                     <div class="user-section">
-                        <a href="login.php">Log in</a>
+                        <a href="/eksamens/keyforge_eksamens/login.php">Log in</a>
                         <span>|</span>
                         <a href="register.php">Register</a>
                     </div>
@@ -38,7 +38,7 @@
     </div>
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="index.php" class="nav-link"><i class="fas fa-home"></i> <span>Mājaslapa</span></a>
+            <a href="index.php" class="nav-link"><i class="fas fa-home"></i> <span>Sākumlapa</span></a>
             <div class="menu-container">
                 <a href="javascript:void(0)" class="menu-trigger nav-link">
                     <i class="fas fa-gamepad"></i> <span>Kategorijas</span>

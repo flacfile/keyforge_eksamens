@@ -1,58 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/variables.css">
-    <link rel="stylesheet" href="../assets/css/admin/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <div class="admin-container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2><a href="../index.php" class="company-name">KeyForge</a></h2>
-            </div>
-            <nav class="sidebar-nav">
-                <a href="dashboard.php" class="nav-item active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="products.php" class="nav-item">
-                    <i class="fas fa-gamepad"></i>
-                    <span>Produkti</span>
-                </a>
-                <a href="orders.php" class="nav-item">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Pasūtījumi</span>
-                </a>
-                <a href="users.php" class="nav-item">
-                    <i class="fas fa-users"></i>
-                    <span>Lietotāji</span>
-                </a>
-                <a href="settings.php" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Iestatījumi</span>
-                </a>
-            </nav>
-        </aside>
+<?php
+session_start();
 
-        <main class="main-content">
-            <header class="content-header">
-                <div class="header-left">
-                    <h1>Dashboard</h1>
-                </div>
-                <div class="header-right">
-                    <div class="admin-profile">
-                        <span>Admin User</span>
-                        <a href="logout.php" class="logout-btn">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </header>
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+    header('Location: /eksamens/keyforge_eksamens/login.php');
+    exit();
+}
 
+$page_title = 'Dashboard';
+$current_page = 'dashboard';
+require_once 'includes/header.php';
+?>
             <div class="content-body">
                 <div class="dashboard-stats">
                     <div class="stat-card">
@@ -90,4 +47,6 @@
 
     <script src="../assets/js/admin/dashboard.js"></script>
 </body>
-</html> 
+</html>
+
+<?php require_once 'includes/footer.php'; ?> 

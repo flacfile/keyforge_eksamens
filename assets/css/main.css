@@ -1,6 +1,5 @@
 /* Main CSS file that imports all others */
 @import url('variables.css');
-@import url('responsive.css');
 
 @import url('includes/header.css');
 @import url('includes/footer.css');
@@ -9,7 +8,34 @@
 @import url('pages/product.css');
 @import url('pages/products.css');
 
-
-
 @import url('pages/login.css');
-@import url('pages/register.css'); 
+/* @import url('pages/register.css');  */
+
+/* Alert Messages */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alert-success {
+    color: #0d461a;
+    background-color: #c8e9d0;
+}
+
+.alert-error {
+    color: #971d29;
+    background-color: #f3d4d7;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.alert {
+    animation: fadeIn 0.3s ease-in-out;
+}
+

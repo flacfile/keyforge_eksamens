@@ -8,7 +8,7 @@
             <div class="footer-section">
                 <h3>Navigācija</h3>
                 <ul>
-                    <li><a href="#">Mājaslapa</a></li>
+                    <li><a href="#">Sākumlapa</a></li>
                     <li><a href="#">Kategorijas</a></li>
                     <li><a href="#">Atlaides</a></li>
                     <li><a href="#">FAQ</a></li>
