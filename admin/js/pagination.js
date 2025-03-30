@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const rows = document.querySelectorAll('.users-table tbody tr');
-    const rowsPerPage = 10;
+    const usersTable = document.querySelector('.users-table');
+    const productsTable = document.querySelector('.products-table');
+    
+    let rows, rowsPerPage;
+    
+    if (usersTable) {
+        rows = usersTable.querySelectorAll('tbody tr');
+        rowsPerPage = 10;
+    } else if (productsTable) {
+        rows = productsTable.querySelectorAll('tbody tr');
+        rowsPerPage = 5;
+    } else {
+        return;
+    }
+
     let currentPage = 1;
 
     function showPage(page) {

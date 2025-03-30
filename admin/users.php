@@ -191,7 +191,7 @@ $result = $stmt->get_result();
             </div>
             <div class="form-actions">
                 <a href="users.php" class="btn btn-secondary">Atcelt</a>
-                <button type="submit" class="btn btn-primary">Saglabāt</button>
+                <button type="submit" class="btn btn-primary-save">Saglabāt</button>
             </div>
         </form>
     </div>

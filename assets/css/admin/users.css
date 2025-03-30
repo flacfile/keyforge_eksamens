@@ -175,19 +175,19 @@
 }
 
 .btn-primary {
-    background-color: var(--primary);
-    color: var(--white);
-}
-
-.btn-secondary {
     background-color: var(--secondary);
     color: var(--white);
 }
 
-.btn-secondary:hover {
+.btn-secondary {
     background-color: var(--accent);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary);
 }
 
 .btn-primary:hover {
-    background-color: var(--gray);
+    background-color: var(--accent);
 }
