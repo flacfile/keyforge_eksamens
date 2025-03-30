@@ -3,7 +3,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Add authentication check to prevent unauthorized access
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     header('Location: /eksamens/keyforge_eksamens/login.php');
     exit();
@@ -20,6 +19,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     <link rel="stylesheet" href="../assets/css/admin/orders.css">
     <link rel="stylesheet" href="../assets/css/admin/products.css">
     <link rel="stylesheet" href="../assets/css/admin/users.css">
+    <link rel="stylesheet" href="../assets/css/admin/alerts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -55,6 +55,16 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
         <!-- Main Content -->
         <main class="main-content">
+            <?php if (isset($_SESSION['flash_message'])): ?>
+                <div class="alert alert-<?= $_SESSION['flash_type'] ?? 'info' ?>" id="flash-message">
+                    <?= htmlspecialchars($_SESSION['flash_message']) ?>
+                </div>
+                <script src="js/header.js"></script>
+                <?php 
+                unset($_SESSION['flash_message']);
+                unset($_SESSION['flash_type']);
+            endif; ?>
+
             <header class="content-header">
                 <div class="header-left">
                     <h1><?= $page_title ?></h1>

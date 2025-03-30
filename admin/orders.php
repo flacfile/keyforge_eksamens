@@ -81,13 +81,8 @@ require_once 'includes/header.php';
         </table>
     </div>
 
-    <!-- Pagination -->
     <div class="pagination">
-        <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
-        <button class="btn-page active">1</button>
-        <button class="btn-page">2</button>
-        <button class="btn-page">3</button>
-        <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+        
     </div>
 </div>
 

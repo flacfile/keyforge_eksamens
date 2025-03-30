@@ -90,7 +90,7 @@
 }
 
 .auth-box h1 a{
-    text-decoration: none;
+    text-decoration: underline;
     color: var(--white);
 }
 

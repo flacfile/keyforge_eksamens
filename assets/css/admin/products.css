@@ -81,6 +81,11 @@
     color: #00a650;
 }
 
+.status-badge.blocked {
+    background: #ebcbce;
+    color: #ff0019;
+}
+
 .btn-icon {
     padding: .5rem;
     border-radius: .25rem;
@@ -110,27 +115,29 @@
 
 .pagination {
     display: flex;
-    justify-content: center;
+    position: fixed;
+    bottom: 1rem;
+    left: 55%;
+    transform: translateX(-50%);
     gap: .5rem;
     margin-top: 1.5rem;
 }
 
+
+
 .btn-page {
     padding: .5rem 1rem;
     border-radius: .25rem;
-    background: var(--white);
+    background: var(--secondary);
     cursor: pointer;
+    color: var(--white);
 }
 
 .btn-page:hover {
     background: var(--accent);
-    color: var(--white);
 }
 
-.btn-page.active {
-    background: var(--secondary);
-    color: var(--white);
-}
+
 
 /* Modals */
 .modal {

@@ -78,14 +78,11 @@ require_once 'includes/header.php';
     <button class="btn btn-secondary" onclick="openImportModal()">
                         <i class="fas fa-file-import"></i> Importēt atslēgas
                     </button>
-    <!-- Pagination -->
+
     <div class="pagination">
-        <button class="btn-page"><i class="fas fa-chevron-left"></i></button>
-        <button class="btn-page active">1</button>
-        <button class="btn-page">2</button>
-        <button class="btn-page">3</button>
-        <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+
     </div>
+    
 </div>
 
 <!-- Import Keys Modal -->
