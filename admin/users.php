@@ -4,6 +4,25 @@ $current_page = 'users';
 require_once 'includes/header.php';
 require_once '../assets/functionality/db.php';
 
+// Fetch ENUM values from db
+$status_query = "SHOW COLUMNS FROM users WHERE Field = 'status'";
+$roles_query = "SELECT id, name FROM roles ORDER BY name";
+
+$status_result = $conn->query($status_query);
+$roles_result = $conn->query($roles_query);
+
+$statuses = [];
+$roles = [];
+
+if ($status_result && $status_row = $status_result->fetch_assoc()) {
+    preg_match("/^enum\(\'(.*)\'\)$/", $status_row['Type'], $matches);
+    $statuses = explode("','", $matches[1]);
+}
+
+while ($role = $roles_result->fetch_assoc()) {
+    $roles[] = $role;
+}
+
 // Get filters from URL parameters
 $role_filter = $_GET['role'] ?? '';
 $status_filter = $_GET['status'] ?? '';
@@ -62,15 +81,21 @@ $result = $stmt->get_result();
             <?php endif; ?>
             <select name="role" class="filter-select" onchange="this.form.submit()">
                 <option value="">Visas lomas</option>
-                <option value="admin" <?= $role_filter === 'admin' ? 'selected' : '' ?>>Administrators</option>
-                <option value="client" <?= $role_filter === 'client' ? 'selected' : '' ?>>Lietotājs</option>
+                <?php foreach ($roles as $role): ?>
+                    <option value="<?= htmlspecialchars($role['name']) ?>" <?= $role_filter === $role['name'] ? 'selected' : '' ?>>
+                        <?= $role['name'] === 'admin' ? 'Administrators' : 'Lietotājs' ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
             <select name="status" class="filter-select" onchange="this.form.submit()">
                 <option value="">Visi statusi</option>
-                <option value="active" <?= $status_filter === 'active' ? 'selected' : '' ?>>Aktīvs</option>
-                <option value="blocked" <?= $status_filter === 'blocked' ? 'selected' : '' ?>>Bloķēts</option>
+                <?php foreach ($statuses as $status): ?>
+                    <option value="<?= htmlspecialchars($status) ?>" <?= $status_filter === $status ? 'selected' : '' ?>>
+                        <?= ucfirst($status) ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
-            <button type="button" class="btn btn-primary" onclick="document.getElementById('addUserModal').style.display='block'">
+            <button type="button" class="btn btn-primary" onclick="showAddUserModal()">
                 <i class="fas fa-plus"></i> Pievienot lietotāju
             </button>
         </form>
@@ -162,7 +187,7 @@ $result = $stmt->get_result();
     <div class="modal-content">
         <div class="modal-header">
             <h2>Rediģēt lietotāju</h2>
-            <span class="close"><a href="users.php">&times;</a></span>
+            <span class="close" onclick="closeEditUserModal()">&times;</span>
         </div>
         <form action="functionality/update_user_info.php" method="POST" class="modal-form">
             <input type="hidden" name="user_id" value="<?= $_SESSION['edit_user']['id'] ?? '' ?>">
@@ -185,8 +210,11 @@ $result = $stmt->get_result();
             <div class="form-group">
                 <label for="edit_role">Loma</label>
                 <select id="edit_role" name="role_id">
-                    <option value="1" <?= ($_SESSION['edit_user']['role_id'] ?? '') == 1 ? 'selected' : '' ?>>Administrators</option>
-                    <option value="2" <?= ($_SESSION['edit_user']['role_id'] ?? '') == 2 ? 'selected' : '' ?>>Lietotājs</option>
+                    <?php foreach ($roles as $role): ?>
+                        <option value="<?= $role['id'] ?>" <?= ($_SESSION['edit_user']['role_id'] ?? '') == $role['id'] ? 'selected' : '' ?>>
+                            <?= $role['name'] === 'admin' ? 'Administrators' : 'Lietotājs' ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-actions">
@@ -202,7 +230,7 @@ $result = $stmt->get_result();
     <div class="modal-content">
         <div class="modal-header">
             <h2>Pievienot jaunu lietotāju</h2>
-            <span class="close"><a href="users.php">&times;</a></span>
+            <span class="close" onclick="closeAddUserModal()">&times;</span>
         </div>
         <form action="functionality/add_user.php" method="POST" class="modal-form">
             <div class="form-group">
@@ -224,14 +252,17 @@ $result = $stmt->get_result();
             <div class="form-group">
                 <label for="role">Loma</label>
                 <select id="role" name="role_id">
-                    <option value="2">Lietotājs</option>
-                    <option value="1">Administrators</option>
+                    <?php foreach ($roles as $role): ?>
+                        <option value="<?= $role['id'] ?>">
+                            <?= $role['name'] === 'admin' ? 'Administrators' : 'Lietotājs' ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 
             <div class="form-actions">
                 <a href="users.php" class="btn btn-secondary">Atcelt</a>
-                <button type="submit" class="btn btn-primary">Pievienot</button>
+                <button type="submit" class="btn btn-primary-save">Pievienot</button>
             </div>
         </form>
     </div>

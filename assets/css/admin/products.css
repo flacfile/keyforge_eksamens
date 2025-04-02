@@ -81,7 +81,7 @@
     color: #00a650;
 }
 
-.status-badge.blocked {
+.status-badge.inactive {
     background: #ebcbce;
     color: #ff0019;
 }

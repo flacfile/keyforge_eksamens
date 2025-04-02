@@ -1,22 +1,23 @@
-function openModal(modalId) {
-    document.getElementById(modalId).classList.add('active');
-    document.body.style.overflow = 'hidden';
+function showAddProductModal() {
+    document.getElementById('addProductModal').classList.add('active');
 }
 
-function closeModal() {
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.classList.remove('active');
-    });
-    document.body.style.overflow = '';
+function closeAddProductModal() {
+    document.getElementById('addProductModal').classList.remove('active');
 }
 
-function openImportModal() {
-    openModal('importModal');
-}
+document.addEventListener('DOMContentLoaded', function() {
+    window.showAddProductModal = function() {
+        document.getElementById('addProductModal').style.display = 'block';
+    }
 
-document.getElementById('importForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    console.log('Importing keys...', Object.fromEntries(formData));
-    closeModal();
+    window.closeAddProductModal = function() {
+        document.getElementById('addProductModal').style.display = 'none';
+    }
+
+    window.editProduct = function(productId) {
+        window.location.href = `functionality/update_product_info.php?id=${productId}`;
+    }
 });
+
+// keys functionality should be added

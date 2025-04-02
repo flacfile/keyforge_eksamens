@@ -25,14 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
-        
-        if ($result->num_rows === 0) {
-            $_SESSION['flash_message'] = 'Lietotājs nav atrasts.';
-            $_SESSION['flash_type'] = 'error';
-            header('Location: ../users.php');
-            exit();
-        }
-        
         $user = $result->fetch_assoc();
         
         // Store user data in session for the form
