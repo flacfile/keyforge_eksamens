@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {    
     window.showAddUserModal = function() {
-        document.getElementById('addUserModal').style.display = 'block';
+        document.getElementById('addUserModal').style.display = 'flex';
     }
 
     window.closeAddUserModal = function() {

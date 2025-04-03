@@ -49,7 +49,7 @@
 
 .search-container input {
     width: 100%;
-    padding: 0.8rem 2.5rem;
+    padding: .8rem 2.5rem;
     border: 1px solid var(--gray);
     border-radius: 1rem;
     font-size: 1rem;
@@ -63,6 +63,26 @@
     color: var(--gray);
 }
 
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.profile-link:hover {
+    color: var(--accent);
+}
+
+.profile-link i {
+    font-size: 1.2rem;
+}
+
+.profile-text {
+    font-size: 1rem;
+}
+
 /* Header Actions */
 .header-actions {
     display: flex;
@@ -74,7 +94,15 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    
+}
+
+.icons-header a{
+    text-decoration: none;
+    color: var(--white);
+}
+
+.icons-header a:hover{
+    color: var(--secondary);
 }
 
 .icons-item {
@@ -84,21 +112,6 @@
 }
 
 .icons-item:hover {
-    color: var(--secondary);
-}
-
-.user-section {
-    color: var(--white);
-}
-
-.user-section a {
-    text-decoration: none;
-    color: var(--white);
-    margin: 0 0.5rem;
-    font-size: 1.2rem;
-}
-
-.user-section a:hover {
     color: var(--secondary);
 }
 

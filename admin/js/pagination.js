@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         rowsPerPage = 10;
     } else if (productsTable) {
         rows = productsTable.querySelectorAll('tbody tr');
-        rowsPerPage = 5;
+        rowsPerPage = 8;
     } else {
         return;
     }

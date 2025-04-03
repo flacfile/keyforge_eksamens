@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $description = $_POST['description'] ?? '';
     $price_eur = $_POST['price_eur'] ?? 0;
-    $price_usd = $_POST['price_usd'] ?? 0;
     $platform = $_POST['platform'] ?? '';
     $genre = $_POST['genre'] ?? '';
     $image_alt = $_POST['image_alt'] ?? '';
@@ -72,13 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!is_numeric($price_eur) || $price_eur <= 0) {
         $_SESSION['flash_message'] = 'Nederīga EUR cena.';
-        $_SESSION['flash_type'] = 'error';
-        header('Location: ../products.php?edit=' . $product_id);
-        exit();
-    }
-
-    if (!is_numeric($price_usd) || $price_usd <= 0) {
-        $_SESSION['flash_message'] = 'Nederīga USD cena.';
         $_SESSION['flash_type'] = 'error';
         header('Location: ../products.php?edit=' . $product_id);
         exit();
@@ -138,23 +130,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Update product in database
         if (!empty($image_path)) {
             $stmt = $conn->prepare("UPDATE products SET 
-                name = ?, description = ?, price_eur = ?, price_usd = ?, 
+                name = ?, description = ?, price_eur = ?, 
                 platform = ?, genre = ?, main_image_path = ?, image_alt = ?,
                 cpu = ?, gpu = ?, ram = ?, storage = ?, updated_at = NOW()
                 WHERE id = ?");
-            $stmt->bind_param("ssddssssssssi", 
-                $name, $description, $price_eur, $price_usd,
+            $stmt->bind_param("ssdssssssssi", 
+                $name, $description, $price_eur,
                 $platform, $genre, $image_path, $image_alt,
                 $cpu, $gpu, $ram, $storage, $product_id
             );
         } else {
             $stmt = $conn->prepare("UPDATE products SET 
-                name = ?, description = ?, price_eur = ?, price_usd = ?, 
+                name = ?, description = ?, price_eur = ?, 
                 platform = ?, genre = ?, image_alt = ?,
                 cpu = ?, gpu = ?, ram = ?, storage = ?, updated_at = NOW()
                 WHERE id = ?");
-            $stmt->bind_param("ssddsssssssi", 
-                $name, $description, $price_eur, $price_usd,
+            $stmt->bind_param("ssdsssssssi", 
+                $name, $description, $price_eur,
                 $platform, $genre, $image_alt,
                 $cpu, $gpu, $ram, $storage, $product_id
             );

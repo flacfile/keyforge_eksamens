@@ -183,7 +183,7 @@ $result = $stmt->get_result();
     </div>
 
 <!-- Edit User Modal -->
-<div id="editUserModal" class="modal" <?= (isset($_GET['edit']) && isset($_SESSION['edit_user'])) ? 'style="display: block;"' : '' ?>>
+<div id="editUserModal" class="modal" <?= (isset($_GET['edit']) && isset($_SESSION['edit_user'])) ? 'style="display: flex;"' : '' ?>>
     <div class="modal-content">
         <div class="modal-header">
             <h2>Rediģēt lietotāju</h2>

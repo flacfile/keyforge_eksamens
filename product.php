@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>KeyForge - Labākas cenas</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="assets/js/script.js"></script>
 </head>
 
-<?php 
-$pageTitle = "Product";
+<?php
+require_once 'assets/functionality/db.php';
 include 'includes/header.php';
+
+$product_id = $_GET['id'] ?? null;
+
+if (!$product_id) {
+    header('Location: products.php');
+    exit();
+}
+
+$stmt = $conn->prepare("SELECT * FROM products WHERE id = ? AND status = 'active'");
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    header('Location: products.php');
+    exit();
+}
+
+$product = $result->fetch_assoc();
 ?> 
 
 <body>
@@ -20,17 +39,19 @@ include 'includes/header.php';
 
     <div class="product-main">
         <div class="product-image">
-            <img src="assets/images/product1.jpg" alt="Game">
+            <img src="<?= htmlspecialchars($product['main_image_path']) ?>" alt="<?= htmlspecialchars($product['image_alt'] ?? $product['name']) ?>">
         </div>
         
         <div class="product-info">
-            <h1 class="product-title">Red dead redemption 2</h1>
+            <h1 class="product-title"><?= htmlspecialchars($product['name']) ?></h1>
             <p class="product-description">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus voluptates culpa nisi ipsum eligendi ab officia ducimus quidem laboriosam accusamus. Itaque delectus aperiam asperiores quaerat! Quod aspernatur, quam aliquid architecto accusantium commodi sequi quasi nobis, quisquam velit soluta? Ab illum unde mollitia earum omnis ipsam, velit dolorem facere ea sunt!
+                <?= htmlspecialchars($product['description']) ?>
             </p>
             
             <div class="product-actions">
-                <div class="price">$59.99</div>
+                <div class="price">
+                    €<?= number_format($product['price_eur'], 2) ?>
+                </div>
                 <button class="btn add-to-cart">Add to Cart</button>
                 <button class="btn buy-now">Buy Now</button>
             </div>
@@ -42,24 +63,20 @@ include 'includes/header.php';
         <h2>Minimālās sistēmas prasības</h2>
         <div class="requirements-grid">
             <div class="requirement">
-                <h3>OS</h3>
-                <p>Windows 10 64-bit</p>
-            </div>
-            <div class="requirement">
-                <h3>Processors</h3>
-                <p>Intel Core i5</p>
-            </div>
-            <div class="requirement">
-                <h3>RAM</h3>
-                <p>8 GB RAM</p>
+                <h3>CPU</h3>
+                <p><?= htmlspecialchars($product['cpu']) ?></p>
             </div>
             <div class="requirement">
                 <h3>GPU</h3>
-                <p>NVIDIA GTX 1060</p>
+                <p><?= htmlspecialchars($product['gpu']) ?></p>
+            </div>
+            <div class="requirement">
+                <h3>RAM</h3>
+                <p><?= htmlspecialchars($product['ram']) ?></p>
             </div>
             <div class="requirement">
                 <h3>Storage</h3>
-                <p>50 GB</p>
+                <p><?= htmlspecialchars($product['storage']) ?></p>
             </div>
         </div>
     </div>

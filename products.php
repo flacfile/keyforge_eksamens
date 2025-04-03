@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products Page</title>
+    <title>Produkti</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="assets/js/script.js"></script>
 </head>
 
 <?php 
-$pageTitle = "Products";
 require_once 'assets/functionality/db.php';
 include 'includes/header.php';
 
-// Fetch products from database
 $query = "SELECT * FROM products WHERE status = 'active' ORDER BY created_at DESC";
 $result = $conn->query($query);
 ?> 
@@ -67,7 +65,7 @@ $result = $conn->query($query);
                 <div class="product-card">
                     <img src="<?= htmlspecialchars($product['main_image_path']) ?>" 
                          alt="<?= htmlspecialchars($product['image_alt'] ?? $product['name']) ?>" 
-                         class="product-image">
+                         class="product-image-products">
                     <h2 class="product-title"><?= htmlspecialchars($product['name']) ?></h2>
                     <p class="product-description">
                         <?php if ($product['platform'] === 'Steam'): ?>
@@ -82,14 +80,9 @@ $result = $conn->query($query);
                     </p>
                     <div class="product-footer">
                         <span class="product-price">
-                            <?php if ($product['on_sale']): ?>
-                                <span class="original-price">$<?= number_format($product['price_usd'], 2) ?></span>
-                                <span class="sale-price">$<?= number_format($product['on_sale_price_eur'], 2) ?></span>
-                            <?php else: ?>
-                                $<?= number_format($product['price_usd'], 2) ?>
-                            <?php endif; ?>
+                            €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <button class="buy-button">Buy Now</button>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Buy Now</a>
                     </div>
                 </div>
             <?php endwhile; ?>

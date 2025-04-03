@@ -104,8 +104,7 @@ $result = $stmt->get_result();
                     <th>Attēls</th>
                     <th>Nosaukums</th>
                     <th>Platforma</th>
-                    <th>Cena EUR</th>
-                    <th>Cena USD</th>
+                    <th>Cena</th>
                     <th>Pieejamās atslēgas</th>
                     <th>Status</th>
                     <th>Darbības</th>
@@ -123,14 +122,8 @@ $result = $stmt->get_result();
                     <td><?= htmlspecialchars($product['name']) ?></td>
                     <td><?= htmlspecialchars($product['platform']) ?></td>
                     <td>
-                        <?php if ($product['on_sale']): ?>
-                            <span class="original-price">€<?= number_format($product['price_eur'], 2) ?></span>
-                            <span class="sale-price">€<?= number_format($product['on_sale_price_eur'], 2) ?></span>
-                        <?php else: ?>
-                            €<?= number_format($product['price_eur'], 2) ?>
-                        <?php endif; ?>
+                        €<?= number_format($product['price_eur'], 2) ?>
                     </td>
-                    <td>$<?= number_format($product['price_usd'], 2) ?></td>
                     <td><?= $product['number_of_keys'] ?? 0 ?></td>
                     <td>
                         <span class="status-badge <?= $product['status'] ?>">
@@ -192,10 +185,6 @@ $result = $stmt->get_result();
                 <div class="form-group">
                     <label for="price_eur">Cena (EUR)</label>
                     <input type="number" id="price_eur" name="price_eur" step="0.01" required>
-                </div>
-                <div class="form-group">
-                    <label for="price_usd">Cena (USD)</label>
-                    <input type="number" id="price_usd" name="price_usd" step="0.01" required>
                 </div>
                 <div class="form-group">
                     <label for="platform">Platforma</label>
@@ -307,12 +296,6 @@ $result = $stmt->get_result();
                 <label for="edit_price_eur">Cena (EUR)</label>
                 <input type="number" id="edit_price_eur" name="price_eur" step="0.01" min="0" value="<?= htmlspecialchars($_SESSION['edit_product']['price_eur'] ?? '') ?>" required>
             </div>
-            
-            <div class="form-group">
-                <label for="edit_price_usd">Cena (USD)</label>
-                <input type="number" id="edit_price_usd" name="price_usd" step="0.01" min="0" value="<?= htmlspecialchars($_SESSION['edit_product']['price_usd'] ?? '') ?>" required>
-            </div>
-            
             <div class="form-group">
                 <label for="edit_platform">Platforma</label>
                 <select id="edit_platform" name="platform" required>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <header>
     <div class="header-bg">
     <div class="header-top-part">
@@ -14,19 +17,25 @@
         <div class="header-actions">
                 <div class="icons-header">
                     <div class="icons-item">
-                        <i class="fas fa-euro-sign"></i>
-                    </div>
-                    <div class="icons-item">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="icons-item">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <div class="user-section">
-                        <a href="/eksamens/keyforge_eksamens/login.php">Log in</a>
-                        <span>|</span>
-                        <a href="register.php">Register</a>
-                    </div>
+                        <?php if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])): ?>
+                            <span>|</span>
+                            <div class="icons-item">
+                                <a href="<?php echo (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') ? 'admin/dashboard.php' : 'cabinet.php'; ?>">
+                                    <i class="fas fa-user"></i>
+                                </a>
+                            </div>
+                            <div class="icons-item">
+                                <a href="assets/functionality/logout.php">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </a>
+                            </div>
+                        <?php else: ?>
+                            <a href="/eksamens/keyforge_eksamens/login.php">Log in</a>
+                            <span>|</span>
+                            <a href="register.php">Register</a>
+                        <?php endif; ?>
                 </div>
             </div>
             <div class="search-container">
@@ -66,7 +75,8 @@
                     </div>
                 </div>
             </div>
-            <a href="sale.php" class="nav-link"><i class="fas fa-percentage"></i> <span>Atlaides</span></a>
+            <a href="products.php" class="nav-link"><i class="fa-solid fa-shop"></i> <span>Produkti</span></a>
+            <!-- <a href="sale.php" class="nav-link"><i class="fas fa-percentage"></i> <span>Atlaides</span></a> -->
             <a href="faq.php" class="nav-link"><i class="fas fa-question-circle"></i> <span>BUJ</span></a>
         </div>
     </nav>

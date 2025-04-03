@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     exit();
 }
 
-$required_fields = ['name', 'description', 'price_eur', 'price_usd', 'platform', 'genre', 'image_alt', 'cpu', 'gpu', 'ram', 'storage'];
+$required_fields = ['name', 'description', 'price_eur', 'platform', 'genre', 'image_alt', 'cpu', 'gpu', 'ram', 'storage'];
 foreach ($required_fields as $field) {
     if (!isset($_POST[$field]) || empty($_POST[$field])) {
         $_SESSION['flash_message'] = 'Visi lauki ir obligāti.';
@@ -21,13 +21,6 @@ foreach ($required_fields as $field) {
 
 if (!is_numeric($_POST['price_eur']) || $_POST['price_eur'] <= 0) {
     $_SESSION['flash_message'] = 'Nederīga EUR cena.';
-    $_SESSION['flash_type'] = 'error';
-    header('Location: ../products.php');
-    exit();
-}
-
-if (!is_numeric($_POST['price_usd']) || $_POST['price_usd'] <= 0) {
-    $_SESSION['flash_message'] = 'Nederīga USD cena.';
     $_SESSION['flash_type'] = 'error';
     header('Location: ../products.php');
     exit();
@@ -67,18 +60,17 @@ try {
 
     // Insert product into database using prepared statement
     $stmt = $conn->prepare("INSERT INTO products (
-        name, description, price_eur, price_usd, platform, genre, 
+        name, description, price_eur, platform, genre, 
         main_image_path, image_alt, cpu, gpu, ram, storage, 
         created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())");
 
     $image_path = 'assets/images/products/' . $filename;
     
-    $stmt->bind_param("ssddssssssss", 
+    $stmt->bind_param("ssdssssssss", 
         $_POST['name'],
         $_POST['description'],
         $_POST['price_eur'],
-        $_POST['price_usd'],
         $_POST['platform'],
         $_POST['genre'],
         $image_path,
