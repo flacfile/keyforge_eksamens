@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produkti</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="assets/js/products-pagination.js"></script>
     <script src="assets/js/script.js"></script>
 </head>
 
@@ -39,10 +41,10 @@ $result = $conn->query($query);
             <div class="filter-section">
                 <h3>Cena</h3>
                 <div class="filter-options">
-                    <label><input type="radio" name="price" value="0-25"> Under $25</label>
-                    <label><input type="radio" name="price" value="25-50"> $25 - $50</label>
-                    <label><input type="radio" name="price" value="50-100"> $50 - $100</label>
-                    <label><input type="radio" name="price" value="100+"> Over $100</label>
+                    <label><input type="radio" name="price" value="0-25"> Līdz 25€</label>
+                    <label><input type="radio" name="price" value="25-50"> 25€ - 50€</label>
+                    <label><input type="radio" name="price" value="50-100"> 50€ - 100€</label>
+                    <label><input type="radio" name="price" value="100+"> Vairāk par 100€</label>
                 </div>
             </div>
 
@@ -57,7 +59,6 @@ $result = $conn->query($query);
                 </div>
             </div>
         </aside>
-
 
         <!-- Products Grid -->
         <main class="products">
@@ -82,13 +83,14 @@ $result = $conn->query($query);
                         <span class="product-price">
                             €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Buy Now</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
                     </div>
                 </div>
             <?php endwhile; ?>
         </main>
     </div>
-
+    <div class="pagination">
+    </div>
     <?php include 'includes/footer.php'; ?>
 </body>
 </html>

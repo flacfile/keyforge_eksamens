@@ -52,7 +52,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
 <div class="product-container-top">
     <div class="text-heading-for-products">
         <p class="heading-text">TOP SPĒLES</p>
-        <a href="products.php" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+        <a href="products.php" class="see-more-btn">Skatīt Vairāk <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="all-product-cards">
         <?php while ($product = $topGamesResult->fetch_assoc()): ?>
@@ -78,7 +78,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
                         <span class="product-price">
                                 €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Buy Now</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
 <div class="product-container-top">
     <div class="text-heading-for-products">
         <p class="heading-text">BESTSELLERI</p>
-        <a href="products.php" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+        <a href="products.php" class="see-more-btn">Skatīt Vairāk <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="all-product-cards">
         <?php while ($product = $bestsellersResult->fetch_assoc()): ?>
@@ -116,7 +116,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
                         <span class="product-price">
                                 €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Buy Now</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
 <div class="product-container-top">
     <div class="text-heading-for-products">
         <p class="heading-text">SPĒLES LĪDZ 10 EUR</p>
-        <a href="products.php" class="see-more-btn">See More <i class="fas fa-arrow-right"></i></a>
+        <a href="products.php" class="see-more-btn">Skatīt Vairāk <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="all-product-cards">
         <?php while ($product = $cheapGamesResult->fetch_assoc()): ?>
@@ -154,7 +154,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
                         <span class="product-price">
                             €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Buy Now</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
                     </div>
                 </div>
             </div>
