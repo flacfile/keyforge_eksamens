@@ -38,7 +38,7 @@ $product = $result->fetch_assoc();
     <!-- Product Main Section -->
 
     <div class="product-main">
-        <div class="product-image">
+        <div class="product-image-product">
             <img src="<?= htmlspecialchars($product['main_image_path']) ?>" alt="<?= htmlspecialchars($product['image_alt'] ?? $product['name']) ?>">
         </div>
         
@@ -52,8 +52,8 @@ $product = $result->fetch_assoc();
                 <div class="price">
                     €<?= number_format($product['price_eur'], 2) ?>
                 </div>
-                <button class="btn add-to-cart">Add to Cart</button>
-                <button class="btn buy-now">Buy Now</button>
+                <button class="btn add-to-cart">Pievienot grozam</button>
+                <button class="btn buy-now">Pirkt tagad</button>
             </div>
         </div>
     </div>

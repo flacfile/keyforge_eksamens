@@ -76,7 +76,6 @@
     cursor: pointer;
     background: var(--gray-light);
     color: var(--primary);
-    transition: all .3s ease;
 }
 
 .btn-icon:hover {

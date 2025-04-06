@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Filter toggle
+    const filterToggleBtn = document.querySelector('.filter-toggle-btn');
+    const filters = document.querySelector('.filters');
+
+    if (filterToggleBtn) {
+        filterToggleBtn.addEventListener('click', function() {
+            filters.classList.toggle('active');
+            const icon = filterToggleBtn.querySelector('i');
+            if (filters.classList.contains('active')) {
+                icon.classList.remove('fa-filter');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-filter');
+            }
+        });
+    }
+
     const productsGrid = document.querySelector('.products');
     const productCards = productsGrid.querySelectorAll('.product-card');
     const itemsPerPage = 6;

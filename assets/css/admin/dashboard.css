@@ -126,7 +126,6 @@
     align-items: center;
     gap: .5rem;
     font-weight: 500;
-    transition: all .3s ease;
 }
 
 .btn-primary {

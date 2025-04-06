@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/pages/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="assets/js/products-pagination.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/script.js"></script>
 </head>
 
@@ -21,6 +21,13 @@ $result = $conn->query($query);
 
 <body>
     <div class="container">
+        <!-- Mobile Filter Toggle -->
+        <div class="mobile-filter-toggle">
+            <button class="filter-toggle-btn">
+                <i class="fas fa-filter"></i> Filtri
+            </button>
+        </div>
+        
         <!-- Filter Sidebar -->
         <aside class="filters">
             <h2>Filtri</h2>

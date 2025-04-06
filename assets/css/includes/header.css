@@ -1,6 +1,7 @@
 .header-bg {
     background: var(--primary);
     color: var(--white);
+    padding: 10px 0;
 }
 
 .header-top-part {
@@ -28,6 +29,8 @@
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .company-name, .company-name-dekstop {
@@ -63,6 +66,16 @@
     color: var(--gray);
 }
 
+.search-container-mobile {
+    display: block;
+}
+
+.search-container-mobile input {
+    width: 100%;
+    padding: .8rem 2.5rem;
+    border: 1px solid var(--gray);
+    border-radius: 1rem;
+}
 .profile-link {
     display: flex;
     align-items: center;
@@ -185,7 +198,27 @@
     color: var(--secondary);
 }
 
+@media (min-width: 768px) {
+    .search-container-mobile{
+        display: none;
+    }
+    .header-top-part{
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
+    .main-nav {
+        display: none; 
+    }
+
+    .main-nav.active {
+        display: block;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
 
     .search-container{
         max-width: 100%;
@@ -223,6 +256,18 @@
         flex-direction: column;
     }
 
+   a.company-name{
+    font-size: 1.5rem;
+    margin-right: 1rem;
+   }
+
+   .icons-header{
+    gap: 10px;
+   }
+
+   i.fas.fa-shopping-cart{
+    margin-right: 10px;
+   }
     
 }
 
