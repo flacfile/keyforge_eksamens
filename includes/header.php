@@ -1,5 +1,26 @@
 <?php
 session_start();
+require_once 'assets/functionality/db.php';
+
+// Fetch ENUM values from db
+$platforms_query = "SHOW COLUMNS FROM products WHERE Field = 'platform'";
+$genres_query = "SHOW COLUMNS FROM products WHERE Field = 'genre'";
+
+$platforms_result = $conn->query($platforms_query);
+$genres_result = $conn->query($genres_query);
+
+$platforms = [];
+$genres = [];
+
+if ($platforms_result && $platforms_row = $platforms_result->fetch_assoc()) {
+    preg_match("/^enum\(\'(.*)\'\)$/", $platforms_row['Type'], $matches);
+    $platforms = explode("','", $matches[1]);
+}
+
+if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
+    preg_match("/^enum\(\'(.*)\'\)$/", $genres_row['Type'], $matches);
+    $genres = explode("','", $matches[1]);
+}
 ?>
 <header>
     <div class="header-bg">
@@ -80,29 +101,22 @@ session_start();
     <div class="nav-container">
         <a href="index.php" class="nav-link"><i class="fas fa-home"></i> <span>Sākumlapa</span></a>
         <div class="menu-container">
-            <a href="javascript:void(0)" class="menu-trigger nav-link">
+            <a href="#" class="menu-trigger nav-link">
                 <i class="fas fa-gamepad"></i> <span>Kategorijas</span>
                 <i class="fas fa-chevron-down"></i>
             </a>
             <div class="menu-content">
                 <div class="menu-section">
                     <h3><i class="fas fa-desktop"></i> Platformas</h3>
-                    <a href="">Steam</a>
-                    <a href="">Origin</a>
-                    <a href="">Ubisoft Connect</a>
-                    <a href="">Epic Games</a>
-                    <a href="">Battle.net</a>
-                    <a href="">EA Play</a>
-                    <a href="">Xbox</a>
-                    <a href="">PlayStation</a>
+                    <?php foreach ($platforms as $platform): ?>
+                        <a href="products.php?platform=<?= urlencode($platform) ?>"><?= htmlspecialchars($platform) ?></a>
+                    <?php endforeach; ?>
                 </div>
                 <div class="menu-section">
-                    <h3><i class="fas fa-tags"></i> Žanri</h3>
-                    <a href="">Sporta spēles</a>
-                    <a href="">Stratēģijas</a>
-                    <a href="">RPG</a>
-                    <a href="">Simulatori</a>
-                    <a href="">Šaušanas spēles</a>
+                    <h3><i class="fas fa-tags"></i><br> Žanri</h3>
+                    <?php foreach ($genres as $genre): ?>
+                        <a href="products.php?genre=<?= urlencode($genre) ?>"><?= htmlspecialchars($genre) ?></a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

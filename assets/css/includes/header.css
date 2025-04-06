@@ -166,15 +166,23 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--white);
+    background: var(--gray-light);
     padding: 1rem;
     min-width: 200px;
     z-index: 1000;
+    border-radius: .5rem;
+    border: 1px solid var(--black);
 }
 
-.menu-container:hover .menu-content {
+.menu-content.active {
     display: flex;
     gap: 2rem;
+}
+
+
+
+.menu-trigger .fa-chevron-up {
+    transform: rotate(180deg);
 }
 
 .menu-section {
@@ -252,7 +260,15 @@
         gap: 1rem;
     }
 
-    .menu-container:hover .menu-content {
+    .menu-content {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .menu-content.active {
         flex-direction: column;
     }
 

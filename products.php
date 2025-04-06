@@ -15,8 +15,70 @@
 require_once 'assets/functionality/db.php';
 include 'includes/header.php';
 
-$query = "SELECT * FROM products WHERE status = 'active' ORDER BY created_at DESC";
-$result = $conn->query($query);
+// Fetch ENUM values from db
+$platforms_query = "SHOW COLUMNS FROM products WHERE Field = 'platform'";
+$genres_query = "SHOW COLUMNS FROM products WHERE Field = 'genre'";
+
+$platforms_result = $conn->query($platforms_query);
+$genres_result = $conn->query($genres_query);
+
+$platforms = [];
+$genres = [];
+
+if ($platforms_result && $platforms_row = $platforms_result->fetch_assoc()) {
+    preg_match("/^enum\(\'(.*)\'\)$/", $platforms_row['Type'], $matches);
+    $platforms = explode("','", $matches[1]);
+}
+
+if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
+    preg_match("/^enum\(\'(.*)\'\)$/", $genres_row['Type'], $matches);
+    $genres = explode("','", $matches[1]);
+}
+
+// Get filter parameters
+$platform_filter = $_GET['platform'] ?? '';
+$genre_filter = $_GET['genre'] ?? '';
+$price_filter = $_GET['price'] ?? '';
+
+// Build query
+$query = "SELECT * FROM products WHERE status = 'active'";
+$params = [];
+
+if ($platform_filter) {
+    $query .= " AND platform = ?";
+    $params[] = $platform_filter;
+}
+
+if ($genre_filter) {
+    $query .= " AND genre = ?";
+    $params[] = $genre_filter;
+}
+
+if ($price_filter) {
+    switch ($price_filter) {
+        case '0-10':
+            $query .= " AND price_eur <= 10";
+            break;
+        case '10-20':
+            $query .= " AND price_eur > 10 AND price_eur <= 20";
+            break;
+        case '20-30':
+            $query .= " AND price_eur > 20 AND price_eur <= 30";
+            break;
+        case '30+':
+            $query .= " AND price_eur > 30";
+            break;
+    }
+}
+
+$query .= " ORDER BY created_at DESC";
+
+$stmt = $conn->prepare($query);
+if (!empty($params)) {
+    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+}
+$stmt->execute();
+$result = $stmt->get_result();
 ?> 
 
 <body>
@@ -30,41 +92,85 @@ $result = $conn->query($query);
         
         <!-- Filter Sidebar -->
         <aside class="filters">
-            <h2>Filtri</h2>
-            
-            <div class="filter-section">
-                <h3>Žanri</h3>
-                <div class="filter-options">
-                    <?php
-                    $genres_query = "SELECT DISTINCT genre FROM products ORDER BY genre";
-                    $genres_result = $conn->query($genres_query);
-                    while ($genre = $genres_result->fetch_assoc()) {
-                        echo '<label><input type="checkbox" name="genre" value="' . htmlspecialchars($genre['genre']) . '"> ' . htmlspecialchars($genre['genre']) . '</label>';
-                    }
-                    ?>
+            <form method="GET" id="filter-form">
+                <h2>Filtri</h2>
+                
+                <div class="filter-section">
+                    <h3>Platformas</h3>
+                    <div class="filter-options">
+                        <label>
+                            <input type="radio" name="platform" value="" 
+                                <?= empty($platform_filter) ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            Visas platformas
+                        </label>
+                        <?php foreach ($platforms as $platform): ?>
+                            <label>
+                                <input type="radio" name="platform" value="<?= htmlspecialchars($platform) ?>" 
+                                    <?= $platform_filter === $platform ? 'checked' : '' ?>
+                                    onchange="this.form.submit()">
+                                <?= htmlspecialchars($platform) ?>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
+                
+                <div class="filter-section">
+                    <h3>Žanri</h3>
+                    <div class="filter-options">
+                        <label>
+                            <input type="radio" name="genre" value=""
+                                <?= empty($genre_filter) ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            Visi žanri
+                        </label>
+                        <?php foreach ($genres as $genre): ?>
+                            <label>
+                                <input type="radio" name="genre" value="<?= htmlspecialchars($genre) ?>"
+                                    <?= $genre_filter === $genre ? 'checked' : '' ?>
+                                    onchange="this.form.submit()">
+                                <?= htmlspecialchars($genre) ?>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
 
-            <div class="filter-section">
-                <h3>Cena</h3>
-                <div class="filter-options">
-                    <label><input type="radio" name="price" value="0-25"> Līdz 25€</label>
-                    <label><input type="radio" name="price" value="25-50"> 25€ - 50€</label>
-                    <label><input type="radio" name="price" value="50-100"> 50€ - 100€</label>
-                    <label><input type="radio" name="price" value="100+"> Vairāk par 100€</label>
+                <div class="filter-section">
+                    <h3>Cena</h3>
+                    <div class="filter-options">
+                        <label>
+                            <input type="radio" name="price" value="" 
+                                <?= empty($price_filter) ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            Visas cenas
+                        </label>
+                        <label>
+                            <input type="radio" name="price" value="0-10"
+                                <?= $price_filter === '0-10' ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            Līdz 10€
+                        </label>
+                        <label>
+                            <input type="radio" name="price" value="10-20"
+                                <?= $price_filter === '10-20' ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            10€ - 20€
+                        </label>
+                        <label>
+                            <input type="radio" name="price" value="20-30"
+                                <?= $price_filter === '20-30' ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            20€ - 30€
+                        </label>
+                        <label>
+                            <input type="radio" name="price" value="30+"
+                                <?= $price_filter === '30+' ? 'checked' : '' ?>
+                                onchange="this.form.submit()">
+                            Vairāk par 30€
+                        </label>
+                    </div>
                 </div>
-            </div>
-
-            <div class="filter-section">
-                <h3>Reitings</h3>
-                <div class="filter-options">
-                    <label><input type="checkbox"> 5</label>
-                    <label><input type="checkbox"> 4</label>
-                    <label><input type="checkbox"> 3</label>
-                    <label><input type="checkbox"> 2</label>
-                    <label><input type="checkbox"> 1</label>
-                </div>
-            </div>
+            </form>
         </aside>
 
         <!-- Products Grid -->

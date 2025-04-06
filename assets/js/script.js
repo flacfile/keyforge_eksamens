@@ -48,6 +48,8 @@ function showSlides(n) {
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
+    const menuTrigger = document.querySelector('.menu-trigger');
+    const menuContent = document.querySelector('.menu-content');
 
     mobileMenuToggle.addEventListener('click', function() {
         mainNav.classList.toggle('active');
@@ -60,4 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.classList.add('fa-times');
         }
     });
+
+    if (menuTrigger) {
+        menuTrigger.addEventListener('click', function() {
+            menuContent.classList.toggle('active');
+            const chevron = menuTrigger.querySelector('.fa-chevron-down');
+            chevron.classList.toggle('fa-chevron-up');
+        });
+    }
 });
