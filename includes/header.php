@@ -59,7 +59,13 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
         </div>
         
         <div class="search-container-mobile">
-            <input type="text" placeholder="Meklēt">
+            <form action="products.php" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Meklēt" 
+                    value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
         </div>
     </div>
 
@@ -91,13 +97,18 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
             </div>
         </div>
         <div class="search-container">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" placeholder="Meklēt">
+            <form action="products.php" method="GET" class="search-form">
+                <input type="text" name="search" placeholder="Meklēt"
+                    value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
         </div>
     </div>
 </div>
 </div>
-<nav class="main-nav">
+<nav class="main-nav active">
     <div class="nav-container">
         <a href="index.php" class="nav-link"><i class="fas fa-home"></i> <span>Sākumlapa</span></a>
         <div class="menu-container">

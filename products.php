@@ -39,10 +39,16 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
 $platform_filter = $_GET['platform'] ?? '';
 $genre_filter = $_GET['genre'] ?? '';
 $price_filter = $_GET['price'] ?? '';
+$search_query = $_GET['search'] ?? '';
 
 // Build query
 $query = "SELECT * FROM products WHERE status = 'active'";
 $params = [];
+
+if ($search_query) {
+    $query .= " AND name LIKE ?";
+    $params[] = "%$search_query%";
+}
 
 if ($platform_filter) {
     $query .= " AND platform = ?";

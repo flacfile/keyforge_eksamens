@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', function() {
         mainNav.classList.toggle('active');
         const icon = mobileMenuToggle.querySelector('i');
         if (mainNav.classList.contains('active')) {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        } else {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         }
     });
 
