@@ -42,7 +42,7 @@ $price_filter = $_GET['price'] ?? '';
 $search_query = $_GET['search'] ?? '';
 
 // Build query
-$query = "SELECT * FROM products WHERE status = 'active'";
+$query = "SELECT * FROM products WHERE status = 'active' AND number_of_keys > 0";
 $params = [];
 
 if ($search_query) {

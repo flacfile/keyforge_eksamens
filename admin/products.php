@@ -365,10 +365,18 @@ $result = $stmt->get_result();
             <button class="close-modal" onclick="closeKeyModal()">&times;</button>
         </div>
         <div class="modal-body">
-            <div class="key-buttons">
-                <button class="btn btn-primary-save" id="addKeyBtn">
-                    <i class="fas fa-plus"></i> Pievienot atslēgu
-                </button>
+            <div class="add-key-section">
+                <h3>Pievienot jaunu atslēgu</h3>
+                <form action="functionality/add_key.php" method="POST" id="addKeyForm">
+                    <input type="hidden" name="product_id" value="<?= $_GET['product_id'] ?? '' ?>">
+                    <input type="hidden" name="page" value="<?php echo $current_page; ?>">
+                    <div class="form-group">
+                        <input type="text" name="key" placeholder="Ievadiet atslēgas kodu" required>
+                        <button type="submit" class="btn btn-primary-save">
+                            <i class="fas fa-plus"></i> Pievienot
+                        </button>
+                    </div>
+                </form>
             </div>
             <div class="keys-table-container">
                 <table class="keys-table">
@@ -400,14 +408,14 @@ $result = $stmt->get_result();
                                 </td>
                                 <td>
                                     <div class="action-buttons">
-                                        <?php if ($key['status'] === 'available'): ?>
-                                            <button class="btn-icon" onclick="markAsSold(<?= $key['id'] ?>)">
-                                                <i class="fas fa-check"></i>
+                                          <form action="functionality/delete_key.php" method="POST" style="display: inline;">
+                                            <input type="hidden" name="key_id" value="<?= $key['id'] ?>">
+                                            <input type="hidden" name="page" value="<?php echo $current_page; ?>">
+                                            <input type="hidden" name="product_id" value="<?= $_GET['product_id'] ?? '' ?>">
+                                            <button type="submit" class="btn-icon warning" onclick="return confirm('Vai tiešām vēlaties dzēst šo atslēgu?');">
+                                                <i class="fas fa-trash"></i>
                                             </button>
-                                        <?php endif; ?>
-                                        <button class="btn-icon warning" onclick="deleteKey(<?= $key['id'] ?>)">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

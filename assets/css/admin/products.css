@@ -254,3 +254,6 @@
     background-color: var(--gray-light);
 }
 
+.add-key-section input[type="text"] {
+    margin: 1rem 0;
+} 

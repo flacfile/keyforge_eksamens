@@ -13,14 +13,14 @@
 include 'includes/header.php';
 require_once 'assets/functionality/db.php';
 
-$topGamesQuery = "SELECT * FROM products WHERE status = 'active' ORDER BY price_eur DESC LIMIT 5";
+$topGamesQuery = "SELECT * FROM products WHERE status = 'active' AND number_of_keys > 0 ORDER BY price_eur DESC LIMIT 5";
 $topGamesResult = $conn->query($topGamesQuery);
 
-$bestsellersQuery = "SELECT * FROM products WHERE status = 'active' ORDER BY created_at DESC LIMIT 5";
+$bestsellersQuery = "SELECT * FROM products WHERE status = 'active' AND number_of_keys > 0 ORDER BY created_at DESC LIMIT 5";
 $bestsellersResult = $conn->query($bestsellersQuery);
 
 
-$cheapGamesQuery = "SELECT * FROM products WHERE status = 'active' AND price_eur <= 10 ORDER BY price_eur ASC LIMIT 5";
+$cheapGamesQuery = "SELECT * FROM products WHERE status = 'active' AND number_of_keys > 0 AND price_eur <= 10 ORDER BY price_eur ASC LIMIT 5";
 $cheapGamesResult = $conn->query($cheapGamesQuery);
 
 
