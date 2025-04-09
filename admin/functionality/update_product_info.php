@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $product_id = $_GET['id'];
+    $page = $_GET['page'] ?? '1';
 
     try {
         $stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
@@ -37,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
         // Store product data in session for the form
         $_SESSION['edit_product'] = $product;
-        header('Location: ../products.php?edit=' . $product_id);
+        header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
         exit();
         
     } catch (Exception $e) {
@@ -51,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 // Post handler
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $product_id = $_POST['product_id'] ?? '';
+    $page = $_POST['page'] ?? '1';
     $name = $_POST['name'] ?? '';
     $description = $_POST['description'] ?? '';
     $price_eur = $_POST['price_eur'] ?? 0;
@@ -65,14 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($product_id) || empty($name) || empty($description) || empty($platform) || empty($genre)) {
         $_SESSION['flash_message'] = 'Visi lauki ir obligāti.';
         $_SESSION['flash_type'] = 'error';
-        header('Location: ../products.php?edit=' . $product_id);
+        header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
         exit();
     }
 
     if (!is_numeric($price_eur) || $price_eur <= 0) {
         $_SESSION['flash_message'] = 'Nederīga EUR cena.';
         $_SESSION['flash_type'] = 'error';
-        header('Location: ../products.php?edit=' . $product_id);
+        header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
         exit();
     }
 
@@ -87,14 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!in_array($image['type'], $allowed_types)) {
                 $_SESSION['flash_message'] = 'Nederīgs attēla formāts. Atļautie formāti: JPG, PNG, WEBP';
                 $_SESSION['flash_type'] = 'error';
-                header('Location: ../products.php?edit=' . $product_id);
+                header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
                 exit();
             }
 
             if ($image['size'] > $max_size) {
                 $_SESSION['flash_message'] = 'Attēla izmērs pārsniedz 5MB.';
                 $_SESSION['flash_type'] = 'error';
-                header('Location: ../products.php?edit=' . $product_id);
+                header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
                 exit();
             }
 
@@ -103,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
                 $filename = uniqid() . '.' . $extension;
                 $upload_path = '../../assets/images/products/';
-                
+
                 // create directory if it doesn't exist
                 // if (!file_exists($upload_path)) {
                 //     mkdir($upload_path, 0777, true);
@@ -122,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } catch (Exception $e) {
                 $_SESSION['flash_message'] = 'Kļūda augšupielādējot attēlu: ' . $e->getMessage();
                 $_SESSION['flash_type'] = 'error';
-                header('Location: ../products.php?edit=' . $product_id);
+                header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
                 exit();
             }
         }
@@ -163,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['flash_message'] = 'Produkta informācija ir atjaunināta.';
             $_SESSION['flash_type'] = 'success';
             unset($_SESSION['edit_product']);
-            header('Location: ../products.php');
+            header('Location: ../products.php?page=' . $page);
             exit();
         } else {
             throw new Exception("Database error");
@@ -171,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         $_SESSION['flash_message'] = 'Kļūda atjauninot produkta informāciju.';
         $_SESSION['flash_type'] = 'error';
-        header('Location: ../products.php?edit=' . $product_id);
+        header('Location: ../products.php?edit=' . $product_id . '&page=' . $page);
         exit();
     }
 }

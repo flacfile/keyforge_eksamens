@@ -14,12 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    let currentPage = 1;
+    // Get current page from URL or default to 1
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentPage = parseInt(urlParams.get('page')) || 1;
 
     function showPage(page) {
         rows.forEach((row, index) => {
             row.style.display = (index >= (page - 1) * rowsPerPage && index < page * rowsPerPage) ? '' : 'none';
         });
+        
+        // Update URL without reloading the page
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.set('page', page);
+        window.history.pushState({}, '', newUrl);
     }
 
     function createButton(content, onClick) {
@@ -67,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    showPage(1);
+    // Show initial page
+    showPage(currentPage);
     updatePagination();
 }); 

@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $user_id = $_GET['id'];
+    $page = $_GET['page'] ?? '1';
 
     try {
         $stmt = $conn->prepare("SELECT id, name, email, role_id FROM users WHERE id = ?");
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         
         // Store user data in session for the form
         $_SESSION['edit_user'] = $user;
-        header('Location: ../users.php?edit=' . $user_id);
+        header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
         exit();
         
     } catch (Exception $e) {
@@ -47,18 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $role_id = $_POST['role_id'] ?? '';
     $password = $_POST['password'] ?? '';
+    $page = $_POST['page'] ?? '1';
 
     if (empty($user_id) || empty($name) || empty($email) || empty($role_id)) {
         $_SESSION['flash_message'] = 'Visi lauki ir obligāti.';
         $_SESSION['flash_type'] = 'error';
-        header('Location: ../users.php?edit=' . $user_id);
+        header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
         exit();
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['flash_message'] = 'Nederīgs e-pasta formāts.';
         $_SESSION['flash_type'] = 'error';
-        header('Location: ../users.php?edit=' . $user_id);
+        header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
         exit();
     }
 
@@ -66,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (strlen($password) < 3) {
             $_SESSION['flash_message'] = 'Parolei jābūt vismaz 3 simbolus garai.';
             $_SESSION['flash_type'] = 'error';
-            header('Location: ../users.php?edit=' . $user_id);
+            header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
             exit();
         }
     }
@@ -79,14 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->get_result()->num_rows > 0) {
             $_SESSION['flash_message'] = 'Šis e-pasts jau ir reģistrēts.';
             $_SESSION['flash_type'] = 'error';
-            header('Location: ../users.php?edit=' . $user_id);
+            header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
             exit();
         }
 
         if (!empty($password)) {
             // Update with new password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, role_id = ? password = ? WHERE id = ?");
+            $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, role_id = ?, password = ? WHERE id = ?");
             $stmt->bind_param("ssisi", $name, $email, $role_id, $hashed_password, $user_id);
         } else {
             // Update without changing password
@@ -105,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['flash_message'] = 'Lietotāja informācija ir atjaunināta.';
             $_SESSION['flash_type'] = 'success';
             unset($_SESSION['edit_user']);
-            header('Location: ../users.php');
+            header('Location: ../users.php?page=' . $page);
             exit();
         } else {
             throw new Exception("Database error");
@@ -113,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (Exception $e) {
         $_SESSION['flash_message'] = 'Kļūda atjauninot lietotāja informāciju.';
         $_SESSION['flash_type'] = 'error';
-        header('Location: ../users.php?edit=' . $user_id);
+        header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
         exit();
     }
 }

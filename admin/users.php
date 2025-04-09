@@ -143,13 +143,12 @@ $result = $stmt->get_result();
                         <span class="role-badge <?= $user['role_name'] ?>"><?= $user['role_name'] === 'admin' ? 'Administrators' : 'Lietotājs' ?></span>
                     </td>
                     <td>
-                        <span class="status-badge <?= $user['status'] ?>"><?= ucfirst($user['status']) ?></span>
+                        <span class="status-badge <?= $user['status'] ?>">
+                            <?= $user['status'] === 'active' ? 'Aktīvs' : 'Bloķēts' ?>
+                        </span>
                     </td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn-icon" onclick="viewUser(<?= $user['id'] ?>)">
-                                <i class="fas fa-eye"></i>
-                            </button>
                             <button class="btn-icon" onclick="editUser(<?= $user['id'] ?>)">
                                 <i class="fas fa-edit"></i>
                             </button>

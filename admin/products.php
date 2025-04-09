@@ -170,7 +170,7 @@ $result = $stmt->get_result();
     <div class="modal-content">
         <div class="modal-header">
             <h2>Pievienot jaunu produktu</h2>
-            <span class="close"><a href="products.php">&times;</a></span>
+            <span class="close" onclick="closeAddProductModal()">&times;</span>
         </div>
         <div class="modal-body">
             <form action="functionality/add_product.php" method="POST" enctype="multipart/form-data" class="modal-form">
@@ -277,7 +277,7 @@ $result = $stmt->get_result();
     <div class="modal-content">
         <div class="modal-header">
             <h2>Rediģēt produktu</h2>
-            <span class="close"><a href="products.php">&times;</a></span>
+            <button class="close-modal" onclick="closeEditProductModal()">&times;</button>
         </div>
         <form action="functionality/update_product_info.php" method="POST" class="modal-form" enctype="multipart/form-data">
             <input type="hidden" name="product_id" value="<?= $_SESSION['edit_product']['id'] ?? '' ?>">
@@ -354,6 +354,71 @@ $result = $stmt->get_result();
                 <button type="submit" class="btn btn-primary-save">Saglabāt</button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- Keys modal -->
+<div class="modal" id="keyManagementModal" <?= isset($_GET['product_id']) ? 'style="display: block;"' : '' ?>>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Atslēgu pārvaldība</h2>
+            <button class="close-modal" onclick="closeKeyModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="key-buttons">
+                <button class="btn btn-primary-save" id="addKeyBtn">
+                    <i class="fas fa-plus"></i> Pievienot atslēgu
+                </button>
+            </div>
+            <div class="keys-table-container">
+                <table class="keys-table">
+                    <thead>
+                        <tr>
+                            <th>Atslēga</th>
+                            <th>Statuss</th>
+                            <th>Darbības</th>
+                        </tr>
+                    </thead>
+                    <tbody id="keysTableBody">
+                        <?php
+                        if (isset($_GET['product_id'])) {
+                            $product_id = (int)$_GET['product_id'];
+                            $keys_query = "SELECT * FROM game_keys WHERE product_id = ? ORDER BY created_at DESC";
+                            $stmt = $conn->prepare($keys_query);
+                            $stmt->bind_param('i', $product_id);
+                            $stmt->execute();
+                            $keys_result = $stmt->get_result();
+                            
+                            while ($key = $keys_result->fetch_assoc()):
+                        ?>
+                            <tr>
+                                <td class="key-value"><?= htmlspecialchars($key['key']) ?></td>
+                                <td>
+                                    <span class="status-badge <?= $key['status'] ?>">
+                                        <?= $key['status'] === 'available' ? 'Pieejama' : 'Pārdota' ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <?php if ($key['status'] === 'available'): ?>
+                                            <button class="btn-icon" onclick="markAsSold(<?= $key['id'] ?>)">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        <?php endif; ?>
+                                        <button class="btn-icon warning" onclick="deleteKey(<?= $key['id'] ?>)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php 
+                            endwhile;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <script src="js/pagination.js"></script>

@@ -115,14 +115,14 @@
     background-color: var(--gray-light);
 }
 
-.close a {
+.close, .close a {
     font-size: 2rem;
     font-weight: bold;
     color: var(--gray);
     cursor: pointer;
 }
 
-.close a:hover {
+.close:hover, .close a:hover {
     color: var(--accent);
 }
 

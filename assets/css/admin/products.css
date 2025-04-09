@@ -81,7 +81,7 @@
     color: #00a650;
 }
 
-.status-badge.inactive {
+.status-badge.inactive, .status-badge.blocked {
     background: #ebcbce;
     color: #ff0019;
 }
@@ -225,3 +225,32 @@
     border-radius: .25rem;
     font-family: monospace;
 }
+
+#keyManagementModal .modal-content {
+    max-width: 800px;
+}
+
+#keyManagementModal .key-buttons {
+    margin-bottom: 1.5rem;
+}
+
+#keyManagementModal .keys-table {
+    width: 100%;
+}
+
+#keyManagementModal .keys-table th {
+    background-color: var(--gray-light);
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+    padding: 1rem;
+}
+#keyManagementModal .keys-table td {
+    padding: .75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+#keyManagementModal .keys-table tr:hover {
+    background-color: var(--gray-light);
+}
+

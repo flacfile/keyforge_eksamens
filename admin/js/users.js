@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {    
+    const currentPage = new URLSearchParams(window.location.search).get('page') || '1';
+
     window.showAddUserModal = function() {
-        document.getElementById('addUserModal').style.display = 'flex';
+        document.getElementById('addUserModal').style.display = 'block';
     }
 
     window.closeAddUserModal = function() {
@@ -8,10 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.editUser = function(userId) {
-        window.location.href = `functionality/update_user_info.php?id=${userId}`;
+        const currentPage = new URLSearchParams(window.location.search).get('page') || '1';
+        window.location.href = `functionality/update_user_info.php?id=${userId}&page=${currentPage}`;
     }
 
     window.closeEditUserModal = function() {
-        document.getElementById('editUserModal').style.display = 'none';
+        window.location.href = `users.php?page=${currentPage}`;
     }
 });
+
