@@ -44,17 +44,22 @@ $product = $result->fetch_assoc();
         
         <div class="product-info">
             <h1 class="product-title"><?= htmlspecialchars($product['name']) ?></h1>
+            <p class="product-price">€<?= number_format($product['price_eur'], 2) ?></p>
             <p class="product-description">
                 <?= htmlspecialchars($product['description']) ?>
             </p>
             
-            <div class="product-actions">
-                <div class="price">
-                    €<?= number_format($product['price_eur'], 2) ?>
-                </div>
-                <button class="btn add-to-cart">Pievienot grozam</button>
+            <form action="assets/functionality/add_to_cart.php" method="POST" class="add-to-cart-form">
+                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn buy-now">
+                    <i class="fas fa-shopping-cart"></i> Pievienot grozam
+                </button>
+            </form>
+
+            <!-- <div class="product-actions">
                 <button class="btn buy-now">Pirkt tagad</button>
-            </div>
+            </div> -->
         </div>
     </div>
 

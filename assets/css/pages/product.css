@@ -70,12 +70,12 @@
 }
 
 .buy-now {
-    background: var(--accent);
+    background: var(--primary);
     color: var(--white);
 }
 
 .buy-now:hover {
-    background-color: var(--primary);
+    background-color: var(--accent);
 }
 
 /* Mobile */

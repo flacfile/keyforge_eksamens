@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_NOTICE);  //ignore notifications fron php
 session_start();
 require_once 'assets/functionality/db.php';
 
@@ -22,7 +23,6 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
     $genres = explode("','", $matches[1]);
 }
 ?>
-<header>
     <div class="header-bg">
     <div class="header-top-part">
         <div class="header-mobile-row">
@@ -31,7 +31,11 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
         <div class="header-actions">
                 <div class="icons-header">
                     <div class="icons-item">
-                        <i class="fas fa-shopping-cart"></i>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
+                        <?php else: ?>
+                            <a href="login.php?redirect=cart.php"><i class="fas fa-shopping-cart"></i></a>
+                        <?php endif; ?>
                     </div>
                     <?php if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])): ?>
                         <span>|</span>
@@ -46,7 +50,7 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
                             </a>
                         </div>
                     <?php else: ?>
-                        <a href="/eksamens/keyforge_eksamens/login.php">Log in</a>
+                        <a href="login.php">Log in</a>
                         <span>|</span>
                         <a href="register.php">Register</a>
                     <?php endif; ?>
@@ -75,25 +79,30 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
     <div class="header-actions">
             <div class="icons-header">
                 <div class="icons-item">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                    <?php if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])): ?>
-                        <span>|</span>
-                        <div class="icons-item">
-                            <a href="<?php echo (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') ? 'admin/dashboard.php' : 'cabinet.php'; ?>">
-                                <i class="fas fa-user"></i>
-                            </a>
-                        </div>
-                        <div class="icons-item">
-                            <a href="assets/functionality/logout.php">
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                        </div>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
                     <?php else: ?>
-                        <a href="/eksamens/keyforge_eksamens/login.php">Log in</a>
-                        <span>|</span>
-                        <a href="register.php">Register</a>
+                        <a href="login.php?redirect=cart.php"><i class="fas fa-shopping-cart"></i></a>
                     <?php endif; ?>
+                </div>
+
+                <?php if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])): ?>
+                    <span>|</span>
+                    <div class="icons-item">
+                        <a href="<?php echo (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') ? 'admin/dashboard.php' : 'cabinet.php'; ?>">
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
+                    <div class="icons-item">
+                        <a href="assets/functionality/logout.php">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </div>
+                <?php else: ?>
+                    <a href="login.php">Log in</a>
+                    <span>|</span>
+                    <a href="register.php">Register</a>
+                <?php endif; ?>
             </div>
         </div>
         <div class="search-container">
