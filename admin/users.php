@@ -30,7 +30,7 @@ $search = $_GET['search'] ?? '';
 
 $query = "SELECT u.*, r.name as role_name, 
           COUNT(DISTINCT o.id) as order_count,
-          COALESCE(SUM(o.product_price), 0) as total_spent
+          COALESCE(SUM(o.total_amount), 0) as total_spent
           FROM users u 
           LEFT JOIN roles r ON u.role_id = r.id
           LEFT JOIN orders o ON u.id = o.user_id";

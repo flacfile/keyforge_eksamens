@@ -1,0 +1,89 @@
+.container-payment-success {
+    max-width: 800px;
+    margin: 2rem auto;
+    min-height: 60vh;
+}
+
+.success-message {
+    text-align: center;
+   
+}
+
+.success-message h1 {
+    color: #25c94b;
+    margin-bottom: 1rem;
+}
+
+.order-details {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.order-details h2 {
+    margin-bottom: 1.5rem;
+    color: var(--black);
+}
+
+.product-keys h3 {
+    color: var(--black);
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--gray);
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.key-item {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.key-code {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: var(--black);
+    word-break: break-all;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: var(--secondary);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--accent);
+}
+
+.btn-secondary {
+    background: var(--gray);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary);
+}
