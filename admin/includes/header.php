@@ -16,9 +16,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     <title><?= $page_title ?></title>
     <link rel="stylesheet" href="../assets/css/variables.css">
     <link rel="stylesheet" href="../assets/css/admin/dashboard.css">
-    <link rel="stylesheet" href="../assets/css/admin/orders.css">
     <link rel="stylesheet" href="../assets/css/admin/products.css">
     <link rel="stylesheet" href="../assets/css/admin/users.css">
+    <link rel="stylesheet" href="../assets/css/admin/order_details.css">
     <link rel="stylesheet" href="../assets/css/admin/alerts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -46,10 +46,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
                     <i class="fas fa-users"></i>
                     <span>Lietotāji</span>
                 </a>
-                <a href="settings.php" class="nav-item <?= $current_page === 'settings' ? 'active' : '' ?>">
+                <!-- <a href="settings.php" class="nav-item <?= $current_page === 'settings' ? 'active' : '' ?>">
                     <i class="fas fa-cog"></i>
                     <span>Iestatījumi</span>
-                </a>
+                </a> -->
             </nav>
         </aside>
 
