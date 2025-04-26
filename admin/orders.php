@@ -1,6 +1,15 @@
 <?php
 require_once '../assets/functionality/db.php';
 
+$search = $_GET['search'] ?? '';
+$params = [];
+$where = '';
+
+if ($search) {
+    $where = "WHERE users.name LIKE ?";
+    $params[] = "%$search%";
+}
+
 $query = "
     SELECT 
         orders.id,
@@ -13,17 +22,32 @@ $query = "
     FROM orders
     JOIN users ON orders.user_id = users.id
     LEFT JOIN order_items ON orders.id = order_items.order_id
+    $where
     GROUP BY orders.id
     ORDER BY orders.created_at DESC
 ";
 
-$result = $conn->query($query);
+if ($search) {
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('s', $params[0]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $result = $conn->query($query);
+}
 ?>
 <?php
 $page_title = 'Pasūtījumi';
 $current_page = 'orders';
-require_once 'includes/header.php'; ?>            
+require_once 'includes/header.php'; ?>
+<div class="content-body">            
             <div class="table-container">
+            <div class="filters-section">
+                <form method="GET" class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" name="search" placeholder="Meklēt pēc vārda..." value="<?= htmlspecialchars($search) ?>">
+                </form>
+            </div>
                 <table class="users-table">
                     <thead>
                         <tr>
@@ -64,6 +88,7 @@ require_once 'includes/header.php'; ?>
                     </tbody>
                 </table>
             </div>
+        </div>
             <div class="pagination">
         
             </div>

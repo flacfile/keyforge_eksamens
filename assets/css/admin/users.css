@@ -12,7 +12,6 @@
 
 .users-table th {
     background: var(--gray-light);
-    font-weight: 600;
 }
 
 .user-info {
