@@ -36,8 +36,10 @@ try {
 
         // Process each item in cart
         foreach ($cart as $item) {
-
             $product_id = $item['product_id'];
+            $quantity = $item['quantity'];
+
+            // Get product price
             $stmt = $conn->prepare("SELECT price_eur FROM products WHERE id = ?");
             $stmt->bind_param("i", $product_id);
             $stmt->execute();
@@ -49,8 +51,8 @@ try {
             }
             
             $price = $product['price_eur'];
-            $quantity = $item['quantity'];
             
+            // Get available keys
             $stmt = $conn->prepare("SELECT id FROM game_keys WHERE product_id = ? AND status = 'available' LIMIT ?");
             $stmt->bind_param("ii", $product_id, $quantity);
             $stmt->execute();
@@ -71,6 +73,11 @@ try {
                 $stmt = $conn->prepare("UPDATE game_keys SET status = 'sold' WHERE id IN ($placeholders)");
                 $types = str_repeat('i', count($keys));
                 $stmt->bind_param($types, ...$keys);
+                $stmt->execute();
+
+                // Update number_of_keys in products table
+                $stmt = $conn->prepare("UPDATE products SET number_of_keys = number_of_keys - ? WHERE id = ?");
+                $stmt->bind_param("ii", $quantity, $product_id);
                 $stmt->execute();
             }
 

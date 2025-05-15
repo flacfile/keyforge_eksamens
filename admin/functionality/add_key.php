@@ -46,23 +46,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt = $conn->prepare("INSERT INTO game_keys (product_id, `key`, status) VALUES (?, ?, 'available')");
     $stmt->bind_param('is', $product_id, $key);
-
+    
     if ($stmt->execute()) {
-         // Logs
+        // Increment number_of_keys in products table
+        $stmt = $conn->prepare("UPDATE products SET number_of_keys = number_of_keys + 1 WHERE id = ?");
+        $stmt->bind_param('i', $product_id);
+        $stmt->execute();
+
+        // Logs
+        $admin_id = $_SESSION['user_id'];
         $stmt = $conn->prepare("INSERT INTO logs (user_id, action, details) VALUES (?, ?, ?)");
         $action = "add_key";
         $details = "Added key: $key for product ID: $product_id";
         $stmt->bind_param("iss", $admin_id, $action, $details);
         $stmt->execute();
 
-        $_SESSION['success'] = 'Atslēga veiksmīgi pievienota!';
+        $_SESSION['flash_message'] = 'Atslēga veiksmīgi pievienota!';
+        $_SESSION['flash_type'] = 'success';
     } else {
-        $_SESSION['error'] = 'Kļūda pievienojot atslēgu!';
+        $_SESSION['flash_message'] = 'Kļūda pievienojot atslēgu!';
+        $_SESSION['flash_type'] = 'error';
     }
 
     header("Location: ../products.php?page=$page&product_id=$product_id");
     exit();
-
 } else {
     header('Location: ../products.php');
     exit();

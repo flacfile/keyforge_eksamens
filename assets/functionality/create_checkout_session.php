@@ -25,8 +25,8 @@ try {
                 'currency' => 'eur',
                 'unit_amount' => $amount,
                 'product_data' => [
-                    'name' => 'Game Keys Purchase',
-                    'description' => 'Purchase of game keys from KeyForge',
+                    'name' => 'Spēles atslēgas pirkums',
+                    'description' => 'Spēles atslēgas pirkums KeyForge platformā',
                 ],
             ],
             'quantity' => 1,
