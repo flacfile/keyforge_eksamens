@@ -50,9 +50,9 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
                             </a>
                         </div>
                     <?php else: ?>
-                        <a href="login.php">Log in</a>
+                        <a href="login.php">Pieteikties</a>
                         <span>|</span>
-                        <a href="register.php">Register</a>
+                        <a href="register.php">Reģistrēties</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -99,9 +99,9 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
                         </a>
                     </div>
                 <?php else: ?>
-                    <a href="login.php">Log in</a>
+                    <a href="login.php">Pieteikties</a>
                     <span>|</span>
-                    <a href="register.php">Register</a>
+                    <a href="register.php">Reģistrēties</a>
                 <?php endif; ?>
             </div>
         </div>

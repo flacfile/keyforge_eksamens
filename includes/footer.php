@@ -2,16 +2,15 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Par mums</h3>
-                <p>Ļoti interesant apraksts par manu lapu.</p>
+                <p><b>KeyForge</b> - ir ērta platforma, kurā varat ātri un droši iegādāties licenču atslēgas populārām spēļu platformām, piemēram, Steam, Origin un Ubisoft Connect. Mēs piedāvājam plašu spēļu klāstu par izdevīgām cenām un tūlītēju atslēgu piegādi.</p>
             </div>
             
             <div class="footer-section">
                 <h3>Navigācija</h3>
                 <ul>
-                    <li><a href="#">Sākumlapa</a></li>
-                    <li><a href="#">Kategorijas</a></li>
-                    <li><a href="#">Atlaides</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="index.php">Sākumlapa</a></li>
+                    <li><a href="products.php">Produkti</a></li>
+                    <li><a href="faq.php">BUJ</a></li>
                 </ul>
             </div>
             
