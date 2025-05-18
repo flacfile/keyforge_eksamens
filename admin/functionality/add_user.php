@@ -29,8 +29,8 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-if (strlen($password) < 3) {
-    $_SESSION['flash_message'] = 'Parolei jābūt vismaz 3 simbolus garai.';
+if (strlen($password) < 8) {
+    $_SESSION['flash_message'] = 'Parolei jābūt vismaz 8 simbolus garai.';
     $_SESSION['flash_type'] = 'error';
     header('Location: ../users.php');
     exit();

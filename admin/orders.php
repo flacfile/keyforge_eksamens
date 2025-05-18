@@ -45,7 +45,7 @@ require_once 'includes/header.php'; ?>
             <div class="filters-section">
                 <form method="GET" class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" name="search" placeholder="Meklēt pēc vārda..." value="<?= htmlspecialchars($search) ?>">
+                    <input type="text" name="search" placeholder="Meklēt pēc lietotājvārda..." value="<?= htmlspecialchars($search) ?>">
                 </form>
             </div>
                 <table class="users-table">

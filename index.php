@@ -78,7 +78,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
                         <span class="product-price">
                                 €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Apskatīt</a>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
                         <span class="product-price">
                                 €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Apskatīt</a>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,7 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
                         <span class="product-price">
                             €<?= number_format($product['price_eur'], 2) ?>
                         </span>
-                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Pirkt</a>
+                        <a href="product.php?id=<?= $product['id'] ?>" class="buy-button">Apskatīt</a>
                     </div>
                 </div>
             </div>

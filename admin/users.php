@@ -73,7 +73,7 @@ $result = $stmt->get_result();
     <div class="filters-section">
         <form method="GET" class="search-box">
             <i class="fas fa-search"></i>
-            <input type="text" name="search" placeholder="Meklēt pēc vārda vai e-pasta..." value="<?= htmlspecialchars($search) ?>">
+            <input type="text" name="search" placeholder="Meklēt pēc lietotājvārda vai e-pasta..." value="<?= htmlspecialchars($search) ?>">
         </form>
         <form method="GET" class="filters">
             <?php if ($search): ?>
@@ -203,7 +203,7 @@ $result = $stmt->get_result();
             <div class="form-group">
                 <label for="edit_password">Parole (atstājiet tukšu, lai saglabātu esošo)</label>
                 <input type="password" id="edit_password" name="password" minlength="3">
-                <small class="form-text text-muted">Minimālais garums: 3 simboli</small>
+                <small class="form-text text-muted">Minimālais garums: 8 simboli</small>
             </div>
             
             <div class="form-group">
@@ -245,7 +245,7 @@ $result = $stmt->get_result();
             <div class="form-group">
                 <label for="password">Parole</label>
                 <input type="password" id="password" name="password" minlength="3" required>
-                <small class="form-text text-muted">Minimālais garums: 3 simboli</small>
+                <small class="form-text text-muted">Minimālais garums: 8 simboli</small>
             </div>
             
             <div class="form-group">

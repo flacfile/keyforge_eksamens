@@ -23,7 +23,7 @@ if ($password !== $password_confirm) {
     exit();
 }
 
-if (strlen($password) < 1) {
+if (strlen($password) < 8) {
     $_SESSION['flash_message'] = 'Parolei jābūt vismaz 8 rakstzīmes garai.';
     $_SESSION['flash_type'] = 'error';
     header('Location: /eksamens/keyforge_eksamens/register.php');

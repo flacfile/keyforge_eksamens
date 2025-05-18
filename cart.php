@@ -97,7 +97,7 @@ require_once 'includes/header.php';
                         <span class="price">€<?= number_format($product['price_eur'] * $item['quantity'], 2) ?></span>
                         <form action="assets/functionality/delete_from_cart.php" method="POST">
                             <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                            <button type="submit" class="btn-icon warning">
+                            <button type="submit" class="remove-from-cart">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
