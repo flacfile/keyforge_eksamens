@@ -1,0 +1,155 @@
+.profile-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.profile-header {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-header h1 {
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--secondary);
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.info-group label {
+    color: var(--black);
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.info-group span {
+    color: var(--black);
+    font-size: 1.1rem;
+}
+
+.orders-section {
+    margin-top: 2rem;
+}
+
+.orders-section h2 {
+    color: var(--black);
+    margin-bottom: 1.5rem;
+}
+
+.order-card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.order-header {
+    padding: 1.5rem;
+    border-bottom: 2px solid var(--gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.order-info h3 {
+    color: var(--black);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.order-date {
+    color: var(--black);
+    font-size: .9rem;
+    margin-top: .5rem;
+    display: block;
+}
+
+.order-status {
+    text-align: right;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: .3rem .8rem;
+    border-radius: 20px;
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.order-total {
+    display: block;
+    color: var(--secondary);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.order-items {
+    padding: 1.5rem;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--black);
+    border-bottom: 1px solid var(--gray);
+}
+
+.items-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray);
+    color: var(--black);
+}
+
+.key-value {
+    font-family: monospace;
+    color: var(--black);
+}
+
+.no-orders {
+    text-align: center;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-orders p {
+    color: var(--black);
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .items-table {
+        display: block;
+        overflow-x: auto;
+    }
+} 
