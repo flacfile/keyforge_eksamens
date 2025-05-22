@@ -48,6 +48,19 @@ try {
         exit();
     }
 
+    // Check if username exists
+    $stmt = $conn->prepare("SELECT id FROM users WHERE name = ?");
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $_SESSION['flash_message'] = 'Šis lietotājvārds jau aizņemts.';
+        $_SESSION['flash_type'] = 'error';
+        header('Location: ../users.php');
+        exit();
+    }
+    $stmt->close();
+
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $conn->prepare("INSERT INTO users (name, email, password, role_id, status, created_at) VALUES (?, ?, ?, ?, 'active', NOW())");

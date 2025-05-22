@@ -85,6 +85,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
+        // Check if username exists
+        $stmt = $conn->prepare("SELECT id FROM users WHERE name = ?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $_SESSION['flash_message'] = 'Šis lietotājvārds jau aizņemts.';
+            $_SESSION['flash_type'] = 'error';
+            header('Location: ../users.php?edit=' . $user_id . '&page=' . $page);
+            exit();
+        }
+        $stmt->close();
+
         if (!empty($password)) {
             // Update with new password
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
