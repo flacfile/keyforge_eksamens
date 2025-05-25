@@ -12,28 +12,28 @@ $password_confirm = $_POST['password_confirm'] ?? '';
 if (empty($username) || !$email || empty($password) || empty($password_confirm)) {
     $_SESSION['flash_message'] = 'Lūdzu, aizpildiet visus laukus.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
     exit();
 }
 
 if ($password !== $password_confirm) {
     $_SESSION['flash_message'] = 'Paroles nesakrīt.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
     exit();
 }
 
 if (strlen($password) < 8) {
     $_SESSION['flash_message'] = 'Parolei jābūt vismaz 8 rakstzīmes garai.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
     exit();
 }
 
 if (strlen($username) < 4) {
     $_SESSION['flash_message'] = 'Lietotājvārdam jābūt vismaz 4 rakstzīmes garam.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
     exit();
 }
 
@@ -45,7 +45,7 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $_SESSION['flash_message'] = 'Šis e-pasts jau reģistrēts.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
     exit();
 }
 $stmt->close();
@@ -58,7 +58,7 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $_SESSION['flash_message'] = 'Šis lietotājvārds jau aizņemts.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
     exit();
 }
 $stmt->close();
@@ -86,11 +86,11 @@ if ($stmt->execute()) {
 
     $_SESSION['flash_message'] = 'Reģistrācija veiksmīga. Lūdzu, piesakieties sistēmā.';
     $_SESSION['flash_type'] = 'success';
-    header('Location: /eksamens/keyforge_eksamens/login.php');
+    header('Location: ../../login.php');
 } else {
     $_SESSION['flash_message'] = 'Kļūda. Lūdzu, mēģiniet vēlreiz.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/register.php');
+    header('Location: ../../register.php');
 }
 
 $stmt->close();

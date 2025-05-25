@@ -154,11 +154,11 @@ while ($row = $result->fetch_assoc()) {
                                                 <td><?= htmlspecialchars($item['platform']) ?></td>
                                                 <td>
                                                     <?php if (!empty($item['keys'])): ?>
-                                                        <?php foreach ($item['keys'] as $key): ?>
-                                                  
+                                                        <div class="key-list">
+                                                            <?php foreach ($item['keys'] as $key): ?>
                                                                 <span class="key-value"><?= htmlspecialchars($key) ?></span>
-                                                         
-                                                        <?php endforeach; ?>
+                                                            <?php endforeach; ?>
+                                                        </div>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>€<?= number_format($item['price'], 2) ?></td>

@@ -35,5 +35,5 @@ if ($user_id) {
 session_destroy();
 $conn->close();
 
-header('Location: /eksamens/keyforge_eksamens/login.php');
+header('Location: ../../login.php');
 exit(); 

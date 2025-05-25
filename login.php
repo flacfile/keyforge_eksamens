@@ -7,7 +7,7 @@ function h($string) {
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    header('Location: ' . ($_SESSION['user_role'] === 'admin' ? '/eksamens/keyforge_eksamens/admin/dashboard.php' : '/eksamens/keyforge_eksamens/cabinet.php'));
+    header('Location: ' .  ($_SESSION['user_role'] === 'admin' ? '/admin/dashboard.php' : '/cabinet.php'));
     exit();
 }
 ?>

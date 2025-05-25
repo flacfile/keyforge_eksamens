@@ -124,9 +124,20 @@
     color: var(--black);
 }
 
+.key-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
 .key-value {
     font-family: monospace;
     color: var(--black);
+    background: var(--white);
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
 }
 
 .no-orders {

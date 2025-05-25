@@ -11,7 +11,7 @@ $remember = isset($_POST['remember']);
 if (!$email || empty($password)) {
     $_SESSION['flash_message'] = 'Lūdzu, ievadiet e-pastu un paroli.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/login.php');
+    header('Location: ../../login.php');
     exit();
 }
 
@@ -62,9 +62,9 @@ if ($user && password_verify($password, $user['password'])) {
 
     // Redirect based on role
     if ($user['role_name'] === 'admin') {
-        header('Location: /eksamens/keyforge_eksamens/admin/dashboard.php');
+        header('Location: ../../admin/dashboard.php');
     } else {
-        header('Location: /eksamens/keyforge_eksamens/cabinet.php');
+        header('Location: ../../cabinet.php');
     }
     exit();
 } else {
@@ -77,7 +77,7 @@ if ($user && password_verify($password, $user['password'])) {
 
     $_SESSION['flash_message'] = 'Nepareizs e-pasts vai parole.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/login.php');
+    header('Location: ../../login.php');
     exit();
 }
 

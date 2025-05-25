@@ -8,7 +8,7 @@ $status = $_POST['status'] ?? '';
 if (empty($user_id) || empty($status) || !in_array($status, ['active', 'blocked'])) {
     $_SESSION['flash_message'] = 'Nederīgi dati.';
     $_SESSION['flash_type'] = 'error';
-    header('Location: /eksamens/keyforge_eksamens/admin/users.php');
+    header('Location: ../users.php');
     exit();
 }
 
@@ -38,5 +38,5 @@ if ($stmt->execute()) {
 $stmt->close();
 $conn->close();
 
-header('Location: /eksamens/keyforge_eksamens/admin/users.php');
+header('Location: ../users.php');
 exit(); 

@@ -10,13 +10,13 @@ $cart = json_decode($_POST['cart'], true) ?? [];
 
 if (empty($amount) || empty($cart)) {
     $_SESSION['error'] = 'Invalid data';
-    header('Location: /eksamens/keyforge_eksamens/checkout.php');
+    header('Location: ../../checkout.php');
     exit;
 }
 
 try {
-    $success_url = 'http://' . $_SERVER['HTTP_HOST'] . '/eksamens/keyforge_eksamens/assets/functionality/process_payment.php?session_id={CHECKOUT_SESSION_ID}';
-    $cancel_url = 'http://' . $_SERVER['HTTP_HOST'] . '/eksamens/keyforge_eksamens/checkout.php';
+    $success_url = 'http://' . $_SERVER['HTTP_HOST'] . '/keyforge_eksamens/assets/functionality/process_payment.php?session_id={CHECKOUT_SESSION_ID}';
+    $cancel_url = 'http://' . $_SERVER['HTTP_HOST'] . '/keyforge_eksamens/checkout.php';
 
     $checkout_session = \Stripe\Checkout\Session::create([
         'payment_method_types' => ['card'],
@@ -43,6 +43,6 @@ try {
     exit;
 } catch (Exception $e) {
     $_SESSION['error'] = 'Error creating checkout session: ' . $e->getMessage();
-    header('Location: /eksamens/keyforge_eksamens/checkout.php');
+    header('Location: ../../checkout.php');
     exit;
 } 

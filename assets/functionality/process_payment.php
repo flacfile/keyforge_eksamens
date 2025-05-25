@@ -9,7 +9,7 @@ $session_id = $_GET['session_id'] ?? '';
 
 if (empty($session_id)) {
     $_SESSION['error'] = 'Invalid session ID';
-    header('Location: /eksamens/keyforge_eksamens/checkout.php');
+    header('Location: ../../checkout.php');
     exit;
 }
 
@@ -91,7 +91,7 @@ try {
         
         unset($_SESSION['cart']);
         
-        header('Location: /eksamens/keyforge_eksamens/payment_success.php');
+        header('Location: ../../payment_success.php');
         exit;
 
     } catch (Exception $e) {
@@ -101,7 +101,7 @@ try {
 
 } catch (Exception $e) {
     $_SESSION['error'] = 'Payment processing failed: ' . $e->getMessage();
-    header('Location: /eksamens/keyforge_eksamens/checkout.php');
+    header('Location: ../../checkout.php');
     exit;
 }
 ?> 

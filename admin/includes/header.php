@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header('Location: /eksamens/keyforge_eksamens/login.php');
+    header('Location: ../../login.php');
     exit();
 }
 ?>
@@ -72,7 +72,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
                 <div class="header-right">
                     <div class="admin-profile">
                         <span><?= $_SESSION['user_name'] ?></span>
-                        <a href="/eksamens/keyforge_eksamens/assets/functionality/logout.php" class="logout-btn" title="Iziet">
+                        <a href="../assets/functionality/logout.php" class="logout-btn" title="Iziet">
                             <i class="fas fa-sign-out-alt"></i>
                         </a>
                     </div>
