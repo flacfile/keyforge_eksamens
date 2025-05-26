@@ -28,13 +28,13 @@ $cheapGamesResult = $conn->query($cheapGamesQuery);
 
 <div class="slideshow-container">
     <div class="slide fade">
-        <img src="assets/images/image-1.jpg" alt="img1">
+        <img src="assets/images/banner_1.jpg" alt="img1">
     </div>
     <div class="slide fade">
-        <img src="assets/images/image-2.jpg" alt="img2">
+        <img src="assets/images/banner_2.jpg" alt="img2">
     </div>
     <div class="slide fade">
-        <img src="assets/images/image-3.jpg" alt="img3">
+        <img src="assets/images/banner_3.jpg" alt="img3">
     </div>
     
     <!-- Navigation arrows -->
