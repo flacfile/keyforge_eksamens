@@ -34,7 +34,7 @@ if ($genres_result && $genres_row = $genres_result->fetch_assoc()) {
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <a href="cart.php"><i class="fas fa-shopping-cart"></i></a>
                         <?php else: ?>
-                            <a href="login.php?redirect=cart.php"><i class="fas fa-shopping-cart"></i></a>
+                            
                         <?php endif; ?>
                     </div>
                     <?php if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])): ?>

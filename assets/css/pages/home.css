@@ -17,7 +17,7 @@
 .slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Slideshow navigation arrows */
@@ -65,6 +65,32 @@
     background-color: var(--accent);
 }
 
+@media (max-width: 768px) {
+    .slideshow-container {
+        width: 100%;
+        border-radius: 0px;
+        margin: 0 auto;
+    }
+
+    .slide {
+        height: 250px;
+    }
+    .prev, .next {
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .dots {
+        bottom: 10px;
+    }
+
+    .dot {
+        height: 8px;
+        width: 8px;
+        margin: 0 3px;
+    }
+}
+
 .all-product-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -88,8 +114,6 @@
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
-
 
 .product-image {
     width: 100%;

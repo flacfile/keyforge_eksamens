@@ -1,11 +1,11 @@
 .header-bg {
+    padding: .3rem .5rem;
     background: var(--primary);
     color: var(--white);
-    padding: 10px 0;
 }
 
 .header-top-part {
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
     max-width: 1200px;
     margin: auto;
     
@@ -38,6 +38,7 @@
     font-weight: bold;
     text-decoration: none;
     color: var(--white);
+    margin-left: .2rem
 }
 
 .company-name:hover, .company-name-dekstop:hover {
@@ -48,6 +49,7 @@
     flex: 1;
     max-width: 400px;
     position: relative;
+    margin-right: .2rem;
 }
 
 .profile-link {

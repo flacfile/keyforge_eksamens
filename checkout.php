@@ -55,14 +55,15 @@ require_once 'includes/header.php';
                 </div>
             <?php endforeach; ?>
         </div>
-        <div class="order-total">
-            <h3>Kopā: €<?= number_format($total_price, 2) ?></h3>
-        </div>
+        <div class="order-total-checkout">
         <form action="assets/functionality/create_checkout_session.php" method="POST">
             <input type="hidden" name="amount" value="<?= $total_price * 100 ?>">
             <input type="hidden" name="cart" value='<?= json_encode($_SESSION['cart']) ?>'>
             <button type="submit" id="checkout-button">Apmaksāt €<?= number_format($total_price, 2) ?></button>
         </form>
+            <h3>Kopā: €<?= number_format($total_price, 2) ?></h3>
+        </div>
+        
     </div>
 </div>
 

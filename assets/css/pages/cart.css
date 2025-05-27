@@ -105,6 +105,18 @@ h1 {
     margin-top: 2rem;
 }
 
+.cart-summary .btn{
+    background: var(--primary);
+    color: var(--white);
+    padding: .5rem 1rem;
+    border-radius: .25rem;
+    text-decoration: none;
+} 
+
+.cart-summary .btn:hover{
+    background: var(--accent);
+}
+
 .total {
     display: flex;
     align-items: center;
@@ -114,7 +126,7 @@ h1 {
 }
 
 .total-price {
-    font-weight: 500;
+    font-weight: 800;
     color: var(--primary-color);
 }
 

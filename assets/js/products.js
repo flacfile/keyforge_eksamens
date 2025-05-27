@@ -18,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const productsGrid = document.querySelector('.products');
-    const productCards = productsGrid.querySelectorAll('.product-card');
-    const itemsPerPage = 6;
+    const productCards = productsGrid.querySelectorAll('.product-card-products');
+    const itemsPerPage = 9;
     let currentPage = 1;
 
     function showPage(page) {

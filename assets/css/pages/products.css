@@ -46,7 +46,7 @@
     gap: 1.5rem;
 }
 
-.product-card {
+.product-card-products {
     background: var(--white);
     border-radius: .5rem;
     padding: 1rem;
@@ -159,6 +159,7 @@
         margin-bottom: 1rem;
     }
 
+    
     .filters {
         display: none;
         flex: none;
@@ -208,6 +209,7 @@
 
     .product-card {
         padding: .5rem;
+        height: auto !important;
     }
 
     .product-image-products {
@@ -227,10 +229,11 @@
 
     .product-price {
         font-size: 1rem;
+        padding-right: 2px;
     }
 
     .buy-button {
-        padding: .3rem .6rem;
+        padding: .3rem .3rem;
         font-size: .85rem;
     }
 

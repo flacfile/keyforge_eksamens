@@ -94,18 +94,19 @@ include 'includes/header.php';
         
         <div class="product-info">
             <h1 class="product-title-product"><?= htmlspecialchars($product['name']) ?></h1>
-            <p class="product-price">€<?= number_format($product['price_eur'], 2) ?></p>
-            <p class="product-description">
+            <p class="product-description-product">
                 <?= htmlspecialchars($product['description']) ?>
             </p>
-            
-            <form action="assets/functionality/add_to_cart.php" method="POST" class="add-to-cart-form">
-                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
-                <input type="hidden" name="quantity" value="1">
-                <button type="submit" class="btn buy-now">
-                    <i class="fas fa-shopping-cart"></i> Pievienot grozam
-                </button>
-            </form>
+            <div class="container-add-product-price">
+                <form action="assets/functionality/add_to_cart.php" method="POST" class="add-to-cart-form">
+                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                    <input type="hidden" name="quantity" value="1">
+                    <button type="submit" class="btn buy-now">
+                        <i class="fas fa-shopping-cart"></i> Pievienot grozam
+                    </button>
+                </form>
+                <p class="product-price-product">€<?= number_format($product['price_eur'], 2) ?></p>
+            </div>
         </div>
     </div>
 

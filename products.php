@@ -182,7 +182,7 @@ $result = $stmt->get_result();
         <!-- Products Grid -->
         <main class="products">
             <?php while ($product = $result->fetch_assoc()): ?>
-                <div class="product-card">
+                <div class="product-card-products">
                     <img src="<?= htmlspecialchars($product['main_image_path']) ?>" 
                          alt="<?= htmlspecialchars($product['image_alt'] ?? $product['name']) ?>" 
                          class="product-image-products">
