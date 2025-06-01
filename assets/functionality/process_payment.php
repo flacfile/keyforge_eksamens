@@ -29,8 +29,19 @@ try {
         $user_id = $_SESSION['user_id'];
         $total_amount = $session->amount_total / 100;
         
-        $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, status, created_at) VALUES (?, ?, 'completed', NOW())");
-        $stmt->bind_param("id", $user_id, $total_amount);
+        // Get user's email
+        $stmt = $conn->prepare("SELECT email FROM users WHERE id = ?");
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        
+        if (!$user) {
+            throw new Exception('User not found');
+        }
+        
+        $stmt = $conn->prepare("INSERT INTO orders (user_id, total_amount, status, stripe_payment_id, email, created_at) VALUES (?, ?, 'completed', ?, ?, NOW())");
+        $stmt->bind_param("idss", $user_id, $total_amount, $session->payment_intent, $user['email']);
         $stmt->execute();
         $order_id = $conn->insert_id;
 
