@@ -24,13 +24,14 @@ git clone https://github.com/flacfile/keyforge_eksamens.git
 ```
 
 ### 2. Pārvietojiet projektu uz tīmekļa servera direktoriju
-XAMPP gadījumā pārvietojiet projekta mapi uz `C:\xampp\htdocs\`
+1. XAMPP gadījumā pārvietojiet projekta mapi uz `C:\xampp\htdocs\`
+2. Pārdēvējiet projekta mapi uz `keyforge_eksamens`
 
 ### 3. Iestatiet datubāzi
 1. Palaidiet Apache un MySQL no XAMPP vadības paneļa.
 2. Atveriet phpMyAdmin (http://localhost/phpmyadmin).
 3. Izveidojiet jaunu datubāzi (keyforge).
-4. Importējiet SQL shēmu:
+4. Importējiet SQL shēmu: `config/keyforge_db.sql`
 
 ### 4. Konfigurējiet datubāzes savienojumu
 Atveriet konfigurācijas failu `assets\functionality\db.php`.
@@ -51,3 +52,7 @@ define('STRIPE_SECRET_KEY', '');
 ```
 ### 6. Atveriet projekta saiti
 `http://localhost/keyforge_eksamens/`
+
+### Administratora konts
+- **E-pasts:** admin@keyforge.test
+- **Parole:** t3st4dm!nth1ngz
