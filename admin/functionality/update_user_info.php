@@ -85,9 +85,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
 
-        // Check if username exists
-        $stmt = $conn->prepare("SELECT id FROM users WHERE name = ?");
-        $stmt->bind_param("s", $name);
+        // Check if username exists (excluding current user)
+        $stmt = $conn->prepare("SELECT id FROM users WHERE name = ? AND id != ?");
+        $stmt->bind_param("si", $name, $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
