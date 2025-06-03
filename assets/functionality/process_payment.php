@@ -9,7 +9,7 @@ $session_id = $_GET['session_id'] ?? '';
 
 if (empty($session_id)) {
     $_SESSION['error'] = 'Invalid session ID';
-    header('Location: ../../checkout.php');
+    header('Location: ../../cart.php');
     exit;
 }
 
@@ -112,7 +112,7 @@ try {
 
 } catch (Exception $e) {
     $_SESSION['error'] = 'Payment processing failed: ' . $e->getMessage();
-    header('Location: ../../checkout.php');
+    header('Location: ../../cart.php');
     exit;
 }
 ?> 
