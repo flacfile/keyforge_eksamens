@@ -45,11 +45,13 @@ $dbname = "keyforge";
 $conn = new mysqli($servername, $username, $password, $dbname);
 ```
 
-### 5. Iestatiet Stripe atslēgu
+### 5. Iestatiet Stripe atslēgu un šifrēšanas atslēgu
 Atveriet konfigurācijas failu `config\secrets.php`.
 ```
 define('STRIPE_SECRET_KEY', '');
+define('ENCRYPTION_KEY', '');
 ```
+
 ### 6. Atveriet projekta saiti
 `http://localhost/keyforge_eksamens/`
 

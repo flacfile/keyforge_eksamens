@@ -1,5 +1,6 @@
 <?php
 require_once '../assets/functionality/db.php';
+require_once '../assets/functionality/encryption.php';
 
 $page_title = 'Pasūtījuma detaļas';
 $current_page = 'orders';
@@ -154,20 +155,27 @@ $keys = $stmt->get_result();
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($key = $keys->fetch_assoc()): ?>
+                            <?php while ($key_row = $keys->fetch_assoc()): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($key['product_name']) ?></td>
-                                    <td><?= htmlspecialchars($key['platform']) ?></td>
+                                    <td><?= htmlspecialchars($key_row['product_name']) ?></td>
+                                    <td><?= htmlspecialchars($key_row['platform']) ?></td>
                                     <td class="key-value">
                                         <div class="game-key">
                                             <i class="fas fa-key"></i>
-                                            <span><?= htmlspecialchars($key['key']) ?></span>
+                                            <?php 
+                                            $key = null;
+                                            $encrypted_key = $key_row['key'];
+                                            if (!empty($encrypted_key)) {
+                                                decryptKey();
+                                                echo htmlspecialchars($key);
+                                            }
+                                            ?>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="date-time">
-                                            <span class="date"><?= date('d.m.Y', strtotime($key['created_at'])) ?></span>
-                                            <span class="time"><?= date('H:i', strtotime($key['created_at'])) ?></span>
+                                            <span class="date"><?= date('d.m.Y', strtotime($key_row['created_at'])) ?></span>
+                                            <span class="time"><?= date('H:i', strtotime($key_row['created_at'])) ?></span>
                                         </div>
                                     </td>
                                 </tr>

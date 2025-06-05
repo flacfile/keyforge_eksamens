@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'assets/functionality/db.php';
+require_once 'assets/functionality/encryption.php';
 
 // Get the latest order for the current user
 $stmt = $conn->prepare("
@@ -68,7 +69,12 @@ require_once 'includes/header.php';
                         <div class="keys">
                     <?php endif; ?>
                     <div class="key-item">
-                        <span class="key-code"><?= htmlspecialchars($row['key']) ?></span>
+                        <?php
+                        $key = null;
+                        $encrypted_key = $row['key'];
+                        decryptKey();
+                        ?>
+                        <span class="key-code"><?= htmlspecialchars($key) ?></span>
                     </div>
                 <?php endwhile;
                 if ($current_product !== ''): ?>

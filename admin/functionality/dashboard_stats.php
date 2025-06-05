@@ -14,35 +14,35 @@ function getDashboardStats() {
         'avg_order_value'
     ];
 
-    // Total products
+    // SQL vaicājums, lai saskaitīt kopējo produktu daudzumu
     $query = "SELECT COUNT(*) as total FROM products WHERE status = 'active'";
     $result = $conn->query($query);
     if ($result) {
         $stats['total_products'] = $result->fetch_assoc()['total'];
     }
 
-    // Count available keys
+    // SQL vaicājums, lai saskaitīt kopējo pieejamo atslēgu daudzumu
     $query = "SELECT COUNT(*) as total FROM game_keys WHERE status = 'available'";
     $result = $conn->query($query);
     if ($result) {
         $stats['available_keys'] = $result->fetch_assoc()['total'];
     }
 
-    // Completed orders (all time)
+    // SQL vaicājums, lai saskaitīt kopējo veiksmīgo pasūtījumu skaitu
     $query = "SELECT COUNT(*) as total FROM orders WHERE status = 'completed'";
     $result = $conn->query($query);
     if ($result) {
         $stats['completed_orders'] = $result->fetch_assoc()['total'];
     }
 
-    // Total users
+    // SQL vaicājums, lai saskaitīt cik ir aktīvie lietotāji
     $query = "SELECT COUNT(*) as total FROM users WHERE status = 'active'";
     $result = $conn->query($query);
     if ($result) {
         $stats['total_users'] = $result->fetch_assoc()['total'];
     }
 
-    // Monthly sales
+    // SQL vaicājums, lai saskaitīt, uz kadu summu šomēnes pārdots produktus
     $query = "SELECT SUM(total_amount) as total FROM orders 
               WHERE status = 'completed' 
               AND MONTH(created_at) = MONTH(CURRENT_DATE()) 
@@ -52,7 +52,7 @@ function getDashboardStats() {
         $stats['monthly_sales'] = $result->fetch_assoc()['total'] ?? 0;
     }
 
-    // Count today's orders
+    // SQL vaicājums, lai saskaitīt cik šodien pasūtījumi
     $query = "SELECT COUNT(*) as total FROM orders 
               WHERE DATE(created_at) = CURDATE()";
     $result = $conn->query($query);
@@ -60,7 +60,7 @@ function getDashboardStats() {
         $stats['today_orders'] = $result->fetch_assoc()['total'];
     }
 
-    // Average order value
+    // SQL vaicājums, lai apreķināt pasūtījuma vidējo summu
     $query = "SELECT AVG(total_amount) as avg_value FROM orders 
               WHERE status = 'completed'";
     $result = $conn->query($query);

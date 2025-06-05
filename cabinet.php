@@ -4,6 +4,7 @@ require_once 'includes/header.php';
 <?php
 session_start();
 require_once 'assets/functionality/db.php';
+require_once 'assets/functionality/encryption.php';
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -155,9 +156,15 @@ while ($row = $result->fetch_assoc()) {
                                                 <td>
                                                     <?php if (!empty($item['keys'])): ?>
                                                         <div class="key-list">
-                                                            <?php foreach ($item['keys'] as $key): ?>
-                                                                <span class="key-value"><?= htmlspecialchars($key) ?></span>
-                                                            <?php endforeach; ?>
+                                                            <?php 
+                                                            foreach ($item['keys'] as $encrypted_key): 
+                                                                $key = null;
+                                                                if (!empty($encrypted_key)) {
+                                                                    decryptKey();
+                                                                    echo '<span class="key-value">' . htmlspecialchars($key) . '</span>';
+                                                                }
+                                                            endforeach; 
+                                                            ?>
                                                         </div>
                                                     <?php endif; ?>
                                                 </td>
