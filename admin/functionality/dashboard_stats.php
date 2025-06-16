@@ -74,7 +74,7 @@ function getDashboardStats() {
 function getBestSellers() {
     global $conn;
     
-    $query = "SELECT p.name, COUNT(oi.id) as sales_count 
+    $query = "SELECT p.name, p.price_eur, COUNT(oi.id) as sales_count 
               FROM order_items oi
               JOIN products p ON oi.product_id = p.id
               JOIN orders o ON oi.order_id = o.id

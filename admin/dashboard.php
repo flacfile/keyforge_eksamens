@@ -117,7 +117,7 @@ foreach ($salesData as $data) {
                                 <tr>
                                     <td><?php echo htmlspecialchars($product['name']); ?></td>
                                     <td><?php echo $product['sales_count']; ?></td>
-                                    <td>€<?php echo number_format($product['sales_count'] * 29.99, 2); ?></td>
+                                    <td>€<?php echo number_format($product['sales_count'] * $product['price_eur'], 2); ?></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
